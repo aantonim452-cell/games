@@ -2,471 +2,496 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>MODNesia | 55+ Game Mod Premium Active 60 Hari | Top Up Mod Indonesia</title>
-    <!-- Google Fonts & Font Awesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>LLC STORE | MOD GAME PREMIUM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #0a0c15;
-            background-image: radial-gradient(circle at 15% 30%, rgba(99, 102, 241, 0.08) 2%, transparent 2.5%),
-                              radial-gradient(circle at 75% 60%, rgba(168, 85, 247, 0.08) 1.8%, transparent 2%);
-            background-size: 48px 48px, 52px 52px;
-            color: #eef2ff;
-            padding: 1.8rem 1.5rem;
-            min-height: 100vh;
-        }
-
-        /* efek cahaya overlay */
-        .glow-orb {
-            position: fixed;
-            width: 60vw;
-            height: 60vw;
-            background: radial-gradient(circle, rgba(79,70,229,0.2), transparent 70%);
-            top: -20%;
-            right: -20%;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: -1;
-            filter: blur(70px);
-        }
-        .glow-orb2 {
-            bottom: -20%;
-            left: -20%;
-            top: auto;
-            background: radial-gradient(circle, rgba(236,72,153,0.15), transparent 70%);
-        }
-        .container {
-            max-width: 1600px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 3;
-        }
-
-        /* Header premium */
-        .hero-card {
-            background: rgba(15, 23, 42, 0.75);
-            backdrop-filter: blur(12px);
-            border-radius: 2rem;
-            padding: 2rem 2rem;
-            margin-bottom: 2.5rem;
-            border: 1px solid rgba(139, 92, 246, 0.5);
-            box-shadow: 0 25px 40px -12px black;
-            transition: 0.3s;
-            text-align: center;
-        }
-        .hero-card h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #a78bfa, #f472b6, #fb923c);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: -0.01em;
-        }
-        .price-big {
-            display: inline-block;
-            background: linear-gradient(95deg, #4f46e5, #7c3aed);
-            padding: 0.4rem 1.3rem;
-            border-radius: 60px;
-            font-weight: 800;
-            font-size: 1.3rem;
-            margin: 1rem 0 0.6rem;
-            box-shadow: 0 4px 14px rgba(79,70,229,0.4);
-        }
-        .badge-vip {
-            background: rgba(255,215,0,0.2);
-            backdrop-filter: blur(4px);
-            padding: 0.5rem 1rem;
-            border-radius: 60px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            border-left: 3px solid #fbbf24;
-        }
-        .contact-button-hero {
-            background: #25D366;
-            border: none;
-            color: #0f172a;
-            font-weight: bold;
-            padding: 12px 28px;
-            border-radius: 60px;
-            font-size: 1rem;
-            margin-top: 18px;
-            cursor: pointer;
-            transition: 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 8px 20px rgba(37,211,102,0.3);
-        }
-        .contact-button-hero:hover {
-            transform: scale(1.02);
-            background: #20b359;
-            box-shadow: 0 10px 24px rgba(37,211,102,0.5);
-        }
-
-        /* search & filter */
-        .toolbar {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: space-between;
-            margin-bottom: 2rem;
-            align-items: center;
-        }
-        .search-wrapper {
-            flex: 2;
-            background: #1e293bcc;
-            backdrop-filter: blur(8px);
-            border-radius: 60px;
-            padding: 0.3rem 1.2rem;
-            display: flex;
-            align-items: center;
-            border: 1px solid #818cf8;
-        }
-        .search-wrapper i {
-            color: #a78bfa;
-            font-size: 1.2rem;
-        }
-        .search-wrapper input {
-            background: transparent;
-            border: none;
-            padding: 12px 10px;
-            width: 100%;
-            color: white;
-            font-weight: 500;
-            outline: none;
-            font-family: inherit;
-        }
-        .filter-group {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-        .filter-chip {
-            background: #0f172a;
-            border-radius: 40px;
-            padding: 8px 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s;
-            border: 1px solid #334155;
-        }
-        .filter-chip.active, .filter-chip:hover {
-            background: linear-gradient(115deg, #4f46e5, #8b5cf6);
-            border-color: #c084fc;
-            box-shadow: 0 2px 10px #8b5cf6;
-        }
-
-        /* Grid Games */
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 1.6rem;
-            margin-top: 0.8rem;
-        }
-
-        .game-card {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 1.5rem;
-            border: 1px solid rgba(129, 140, 248, 0.4);
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            animation: cardAppear 0.5s backwards;
-        }
-        @keyframes cardAppear {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .game-card:hover {
-            transform: translateY(-8px);
-            border-color: #c084fc;
-            box-shadow: 0 20px 30px -12px rgba(139,92,246,0.4);
-        }
-        .card-img-area {
-            height: 130px;
-            background: #0f172a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            border-bottom: 2px solid #4f46e5;
-        }
-        .game-icon {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 20px;
-            background: #111827;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
-            transition: 0.2s;
-        }
-        .game-card:hover .game-icon {
-            transform: scale(1.03);
-        }
-        .mod-badge {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: #f59e0b;
-            color: #0f172a;
-            font-size: 0.65rem;
-            font-weight: 800;
-            padding: 4px 12px;
-            border-radius: 30px;
-            letter-spacing: 1px;
-        }
-        .card-content {
-            padding: 1rem 1.2rem 1.2rem;
-        }
-        .card-content h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            display: flex;
-            justify-content: space-between;
-        }
-        .price-mod {
-            background: linear-gradient(135deg, #d9f99d, #facc15);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-weight: 800;
-            font-size: 1.2rem;
-        }
-        .mod-duration {
-            background: #0f172a;
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 30px;
-            font-size: 0.7rem;
-            margin: 0.5rem 0;
-            font-weight: 500;
-            color: #cbd5e1;
-        }
-        .btn-order {
-            width: 100%;
-            background: linear-gradient(115deg, #4f46e5, #7e22ce);
-            border: none;
-            padding: 10px 0;
-            border-radius: 40px;
-            font-weight: bold;
-            color: white;
-            cursor: pointer;
-            transition: 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            font-size: 0.8rem;
-            margin-top: 12px;
-        }
-        .btn-order:hover {
-            background: linear-gradient(115deg, #6366f1, #a855f7);
-            transform: translateY(-2px);
-        }
-
-        .footer {
-            margin-top: 3rem;
-            text-align: center;
-            padding: 1.5rem;
-            border-top: 1px solid #334155;
-            font-size: 0.75rem;
-            color: #94a3b8;
-        }
-
-        @media (max-width: 600px) {
-            body { padding: 1rem; }
-            .hero-card h1 { font-size: 1.8rem; }
-            .games-grid { grid-template-columns: 1fr; }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Inter', sans-serif; background: #0a0a1a; color: #fff; min-height: 100vh; }
+        .bg-master { position: fixed; inset: 0; z-index: -10; overflow: hidden; }
+        .nebula-1, .nebula-2, .nebula-3 { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3; animation: float 20s infinite; }
+        .nebula-1 { width: 500px; height: 500px; background: #8b5cf6; top: -200px; left: -200px; }
+        .nebula-2 { width: 600px; height: 600px; background: #3b82f6; bottom: -200px; right: -200px; animation-delay: -5s; }
+        .nebula-3 { width: 400px; height: 400px; background: #f59e0b; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-delay: -10s; }
+        @keyframes float { 0%,100% { transform: translate(0,0); } 50% { transform: translate(20px,-20px); } }
+        .loading-screen { position: fixed; inset: 0; background: #0a0a1a; z-index: 10000; display: flex; justify-content: center; align-items: center; transition: opacity 0.8s; }
+        .loader-ring { width: 60px; height: 60px; border: 3px solid rgba(245,158,11,0.2); border-top: 3px solid #f59e0b; border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 15px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .toast-msg { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px); background: #1e293b; padding: 12px 24px; border-radius: 50px; z-index: 9999; transition: 0.3s; border-left: 4px solid #f59e0b; opacity: 0; font-size: 13px; }
+        .toast-msg.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+        .container { max-width: 650px; margin: 0 auto; padding: 20px 16px 40px; }
+        
+        .lang-switch { display: flex; justify-content: flex-end; gap: 10px; margin-bottom: 15px; }
+        .lang-btn { background: rgba(51,65,85,0.5); border: none; padding: 8px 18px; border-radius: 50px; color: white; cursor: pointer; font-size: 13px; font-weight: 500; transition: 0.2s; }
+        .lang-btn.active { background: linear-gradient(135deg, #f59e0b, #d97706); color: #0f172a; font-weight: bold; }
+        
+        .hero { background: rgba(15,25,45,0.65); backdrop-filter: blur(12px); border-radius: 1.5rem; padding: 1rem; text-align: center; margin-bottom: 20px; border: 1px solid rgba(245,158,11,0.3); }
+        .badge { background: rgba(51,65,85,0.5); padding: 6px 14px; border-radius: 50px; font-size: 12px; display: inline-block; margin: 4px; border-left: 3px solid #f59e0b; }
+        
+        .online-card { background: linear-gradient(135deg, #1e293b, #0f172a); border-radius: 1.5rem; padding: 15px; text-align: center; margin-bottom: 20px; border: 1px solid rgba(245,158,11,0.25); }
+        .online-number { font-size: 32px; font-weight: 800; background: linear-gradient(135deg, #fff, #fbbf24); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .payment-section { background: rgba(15,25,45,0.6); border-radius: 1.5rem; padding: 16px; margin: 20px 0; border: 1px solid rgba(245,158,11,0.3); }
+        .payment-methods { display: flex; flex-wrap: wrap; gap: 8px; }
+        .payment-chip { background: #0f172a; padding: 8px 14px; border-radius: 50px; font-size: 13px; border: 1px solid rgba(245,158,11,0.3); display: inline-flex; align-items: center; gap: 8px; }
+        
+        .game-grid { display: flex; flex-direction: column; gap: 30px; margin: 20px 0; }
+        .game-card { background: rgba(10,20,35,0.6); backdrop-filter: blur(12px); border-radius: 1.5rem; border: 1px solid rgba(245,158,11,0.25); overflow: hidden; transition: 0.2s; }
+        .game-header { display: flex; align-items: center; gap: 14px; padding: 14px; background: rgba(30,41,59,0.9); border-bottom: 1px solid #f59e0b; }
+        .game-img { width: 55px; height: 55px; border-radius: 14px; object-fit: cover; border: 2px solid #f59e0b; }
+        .game-name { font-weight: 800; background: linear-gradient(45deg, #ffd966, #f59e0b); -webkit-background-clip: text; background-clip: text; color: transparent; font-size: 18px; }
+        
+        /* HTML5 Video Player */
+        .video-container { position: relative; width: 100%; background: #000; border-radius: 12px; overflow: hidden; }
+        .video-container video { width: 100%; height: auto; display: block; cursor: pointer; }
+        .video-controls { display: flex; align-items: center; gap: 12px; padding: 8px 12px; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); }
+        .play-pause-btn { background: none; border: none; color: #fbbf24; font-size: 20px; cursor: pointer; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.1); }
+        .play-pause-btn:active { transform: scale(0.95); }
+        .video-time { font-size: 12px; color: #94a3b8; font-family: monospace; }
+        .video-progress { flex: 1; height: 4px; background: #334155; border-radius: 4px; overflow: hidden; cursor: pointer; }
+        .video-progress-fill { height: 100%; background: #f59e0b; width: 0%; transition: width 0.1s; }
+        
+        .price-wrapper { padding: 12px 16px; }
+        .price-platform-card { background: rgba(0,0,0,0.3); border-radius: 14px; margin-bottom: 12px; overflow: hidden; }
+        .price-platform-header { padding: 10px 14px; background: rgba(245,158,11,0.15); border-bottom: 1px solid rgba(245,158,11,0.2); }
+        .price-platform-header span { font-weight: 700; font-size: 14px; }
+        .price-platform-header i { margin-right: 8px; }
+        .price-list { display: flex; justify-content: space-around; padding: 12px 10px; flex-wrap: wrap; gap: 12px; }
+        .price-item-card { text-align: center; flex: 1; min-width: 80px; background: rgba(15,25,45,0.5); border-radius: 12px; padding: 8px 6px; }
+        .price-days { font-size: 11px; color: #94a3b8; margin-bottom: 4px; }
+        .price-amount { font-size: 16px; font-weight: 800; color: #fbbf24; }
+        
+        .btn-order { width: calc(100% - 32px); margin: 0 16px 20px; padding: 14px; background: linear-gradient(95deg, #f59e0b, #d97706); border: none; color: white; font-weight: 800; font-size: 16px; border-radius: 50px; cursor: pointer; transition: 0.1s; }
+        .btn-order:active { transform: scale(0.96); }
+        
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.98); backdrop-filter: blur(40px); z-index: 2000; justify-content: center; align-items: center; }
+        .modal-content { background: linear-gradient(135deg, #1e293b, #0f172a); width: 90%; max-width: 460px; border-radius: 1.8rem; padding: 22px; border: 2px solid #f59e0b; }
+        .form-group { margin-bottom: 18px; }
+        .form-group label { font-size: 12px; color: #94a3b8; display: block; margin-bottom: 6px; font-weight: 500; }
+        .form-group input, .form-group select { width: 100%; padding: 12px; background: #0f172a; border: 1px solid #334155; border-radius: 40px; color: white; font-size: 14px; }
+        .preview { background: #0f172a; padding: 12px; border-radius: 16px; font-size: 11px; border-left: 3px solid #f59e0b; margin: 18px 0; white-space: pre-wrap; font-family: monospace; }
+        .btn-copy, .btn-send { width: 100%; padding: 12px; border-radius: 40px; font-weight: 700; margin: 8px 0; border: none; cursor: pointer; transition: 0.1s; }
+        .btn-copy { background: #334155; color: white; }
+        .btn-send { background: linear-gradient(95deg, #f59e0b, #fbbf24); color: #0f172a; }
+        
+        .telegram-btn { display: block; background: #0088cc; text-align: center; padding: 14px; border-radius: 50px; color: white; text-decoration: none; margin: 20px 0 10px; font-weight: 700; cursor: pointer; border: none; width: 100%; font-size: 16px; }
+        .collab-section { background: linear-gradient(135deg, #1e293b, #0f172a); border-radius: 1.5rem; padding: 20px; margin: 20px 0; text-align: center; border: 1px solid rgba(245,158,11,0.4); }
+        .collab-title { color: #fbbf24; font-size: 18px; margin-bottom: 10px; font-weight: 700; }
+        .collab-desc { font-size: 12px; color: #94a3b8; margin-bottom: 15px; line-height: 1.5; }
+        .collab-email-text { display: inline-block; background: rgba(245,158,11,0.2); padding: 8px 20px; border-radius: 50px; color: #fbbf24; font-size: 13px; font-weight: 600; border: 1px solid rgba(245,158,11,0.4); cursor: default; user-select: text; }
+        .collab-email-text i { margin-right: 8px; }
+        .footer { text-align: center; padding: 20px 0; font-size: 11px; color: #64748b; border-top: 1px solid rgba(245,158,11,0.2); margin-top: 20px; }
+        @media (max-width: 550px) { .price-list { flex-direction: column; gap: 8px; } .price-item-card { display: flex; justify-content: space-between; align-items: center; } .price-days { margin-bottom: 0; } }
     </style>
 </head>
 <body>
-<div class="glow-orb"></div>
-<div class="glow-orb glow-orb2"></div>
+
+<div id="loadingScreen" class="loading-screen"><div class="loader-ring"></div><p>LLC STORE</p></div>
+<div id="toastMsg" class="toast-msg">✅ Message copied!</div>
+
+<div class="bg-master"><div class="nebula-1"></div><div class="nebula-2"></div><div class="nebula-3"></div></div>
 
 <div class="container">
-    <div class="hero-card">
-        <h1><i class="fas fa-microchip"></i> MODNESIA PREMIUM <i class="fas fa-crown"></i></h1>
-        <div class="price-big">✨ ALL GAME MOD RP 100.000 ✨</div>
-        <div class="badge-vip"><i class="fas fa-calendar-alt"></i> AKTIF 60 HARI FULL • ANTI BAN • UPDATE TERBARU</div>
-        <div class="stats-row" style="justify-content: center; gap: 20px; margin: 15px 0;">
-            <span><i class="fas fa-gamepad"></i> 55+ Game Populer</span>
-            <span><i class="fas fa-shield-alt"></i> Garansi 60 Hari</span>
-            <span><i class="fas fa-robot"></i> MOD AKTIF Auto Update</span>
-        </div>
-        <button class="contact-button-hero" id="heroWhatsappBtn"><i class="fab fa-whatsapp fa-lg"></i> ORDER VIA WHATSAPP</button>
+    <div class="lang-switch">
+        <button class="lang-btn active" id="langID" onclick="setLanguage('id')">🇮🇩 Indonesia</button>
+        <button class="lang-btn" id="langEN" onclick="setLanguage('en')">🇬🇧 English</button>
     </div>
 
-    <div class="toolbar">
-        <div class="search-wrapper">
-            <i class="fas fa-search"></i>
-            <input type="text" id="searchGame" placeholder="Cari game favoritmu ...">
-        </div>
-        <div class="filter-group">
-            <div class="filter-chip active" data-filter="all">Semua Game</div>
-            <div class="filter-chip" data-filter="action">Action</div>
-            <div class="filter-chip" data-filter="rpg">RPG / MOBA</div>
-            <div class="filter-chip" data-filter="simulasi">Simulasi</div>
-            <div class="filter-chip" data-filter="populer">⭐ Paling Laris</div>
+    <div class="hero">
+        <div class="badge-collection">
+            <span class="badge"><i class="fas fa-gem"></i> <span class="hero-text-1">Mod Premium</span></span>
+            <span class="badge"><i class="fas fa-shield-alt"></i> <span class="hero-text-2">Anti Ban</span></span>
+            <span class="badge"><i class="fas fa-clock"></i> <span class="hero-text-3">24/7 Support</span></span>
+            <span class="badge"><i class="fas fa-sync-alt"></i> <span class="hero-text-4">Auto Update</span></span>
         </div>
     </div>
 
-    <div class="games-grid" id="gamesGrid"></div>
-    <div class="footer">
-        <i class="fas fa-check-circle"></i> Harga tetap Rp100.000 untuk semua game MOD | Masa aktif 60 hari sejak aktivasi<br>
-        Support 24/7 • Proses cepat • MOD Premium Ori Indonesia<br>
-        © 2026 MODNesia Store • #1 Tempat TopUp MOD Terpercaya
+    <div class="online-card">
+        <div class="online-number" id="onlineCount">1,482</div>
+        <div class="online-label" id="onlineLabel">Online Sekarang</div>
+        <div class="peak-time" id="peakTimeInfo" style="font-size: 11px; margin-top: 6px; color: #fbbf24;">⭐ Waktu normal, pelayanan cepat</div>
+    </div>
+
+    <div class="payment-section">
+        <h3 style="color:#fbbf24; margin-bottom:10px;" id="paymentTitle"><i class="fas fa-credit-card"></i> Metode Pembayaran</h3>
+        <div class="payment-methods" id="paymentMethods"></div>
+    </div>
+
+    <div id="gameList" class="game-grid"></div>
+
+    <div class="collab-section" id="collabSection">
+        <div class="collab-title" id="collabTitle">🤝 MENERIMA KERJA SAMA</div>
+        <div class="collab-desc" id="collabDesc">Kami membuka peluang kerja sama untuk YouTuber, Streamer, Content Creator, serta para pembuat APK MOD yang ingin berkolaborasi.</div>
+        <div class="collab-desc" id="collabDesc2">💰 Komisi menarik • Akses eksklusif • Support penuh</div>
+        <div class="collab-email-text" id="collabEmail"><i class="fas fa-envelope"></i> llcstore92@gmail.com</div>
+    </div>
+
+    <a href="https://t.me/llc_store" class="telegram-btn" id="telegramBtn"><i class="fab fa-telegram"></i> <span id="telegramText">Join Telegram Group</span></a>
+
+    <div class="footer" id="footerText">© 2026 LLC STORE | MOD PREMIUM</div>
+</div>
+
+<div id="orderModal" class="modal">
+    <div class="modal-content">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+            <h3 id="modalTitle"><i class="fas fa-cart-shopping"></i> Form Order MOD</h3>
+            <span onclick="closeModal()" style="font-size:28px; cursor:pointer;">&times;</span>
+        </div>
+        <div class="form-group"><label id="labelGame">Game</label><input type="text" id="modalGame" readonly style="background:#334155;"></div>
+        <div class="form-group"><label id="labelPlatform">Platform</label><select id="modalPlatform"><option value="Android">🤖 Android</option><option value="iPhone">🍎 iPhone</option></select></div>
+        <div class="form-group"><label id="labelPaket">Paket</label><select id="modalPaket"></select></div>
+        <div class="form-group"><label id="labelPayment">Metode Pembayaran</label><select id="modalPaymentMethod"></select></div>
+        <div class="preview" id="modalPreview">⚡ Pilih game, platform & paket</div>
+        <button class="btn-copy" id="copyOrderBtn"><i class="fas fa-copy"></i> <span id="copyText">Salin Pesanan</span></button>
+        <button class="btn-send" id="sendOrderBtn"><i class="fas fa-paper-plane"></i> <span id="sendText">Kirim ke Chat APK</span></button>
+        <div style="font-size:10px; text-align:center; margin-top:10px;" id="infoText">Pesanan akan disalin, buka chat APK dan paste</div>
     </div>
 </div>
 
 <script>
-    // ------------- DAFTAR 55+ GAME MOD POPULER INDONESIA + LOGO RESMI -------------
-    const gamesList = [
-        { name: "Mobile Legends", category: "rpg", icon: "https://play-lh.googleusercontent.com/AdBpnRzVifffU_tWlK-252WerTASW7wqu64Nf06DvT7caGUAKT4W4WxoCQgH-fcMTA=w240-h480", popular: true },
-        { name: "Free Fire", category: "action", icon: "https://play-lh.googleusercontent.com/6cgoEj60aVpEFl99cDzBkQOY68bEtxj9q9hO2XbXZ2zJLZkUHLz2FIgPV6J3zH7f3g=w240-h480", popular: true },
-        { name: "Genshin Impact", category: "rpg", icon: "https://play-lh.googleusercontent.com/-9v1_2ARwC1zJ5f9HsdOnOg3k5eMwji-dOoWnZ1TqzAgmg4-x29gNWhzM3-fDF5sTw=w240-h480", popular: true },
-        { name: "Call of Duty Mobile", category: "action", icon: "https://play-lh.googleusercontent.com/Tq69GpBQZJzTUvoJp7EQ_awwQfaMR0yP22GQ26FrlEQ52eF9Xr5DR18YyUGd2J1d8g=w240-h480", popular: false },
-        { name: "PUBG Mobile", category: "action", icon: "https://play-lh.googleusercontent.com/3bYrPSP56eHw3awSiaND4z_Kimf54s5cUzppUTLfe0pqKFVh6Gx8ut54sKQm8H7oPZk=w240-h480", popular: true },
-        { name: "Honkai Impact 3rd", category: "rpg", icon: "https://play-lh.googleusercontent.com/2C1u0j1kFEBrEfV2ecVdDVKXVqE8Xx53b55mWlMZwwUoDqkGcg66K1JIQSK1i8KrxO0=w240-h480", popular: false },
-        { name: "Arena of Valor", category: "rpg", icon: "https://play-lh.googleusercontent.com/pJ5Z6LhR8cH57Pm1Pq8f2n5jJxOU4q86i5gByPBssC7pc1rHMEk6N2nlywZjniVqLxk=w240-h480", popular: true },
-        { name: "Point Blank", category: "action", icon: "https://play-lh.googleusercontent.com/Ak4QnAZ1ga-0XHYbRkJCq8idrDLONz1eImHdJpQ4cwfRkwNEzwQO_tPLHqUlE8vBfA=w240-h480", popular: false },
-        { name: "Lost Light", category: "action", icon: "https://play-lh.googleusercontent.com/2rOzMLvYxZ9TQkhR97JPis3N9PAnT4cP0-zJcDeGdqz-7WbbJm-ryBdz0zPXfBIpUq4=w240-h480", popular: false },
-        { name: "Ragnarok Origin", category: "rpg", icon: "https://play-lh.googleusercontent.com/rnZuk0k7yDr2aOSlSJiyYqEiqGQf9fFqTIX2N0aN2Le5q9spJd0PAhbqu6XVk27Q7Q=w240-h480", popular: true },
-        { name: "Black Clover M", category: "rpg", icon: "https://play-lh.googleusercontent.com/sDZUo7QRNlZvCqZbPRg2TAlnjKauQVkAlfzPhf7j0r6YyPujqcwHVmXHiyKUNi7oVBE=w240-h480", popular: false },
-        { name: "Lords Mobile", category: "simulasi", icon: "https://play-lh.googleusercontent.com/V8pAR7e9pzHts7f4tRQPL5S9s7E2YkPMnZmzl9Y1uy9-_7RsHmy4CvH5zQYr5JTh3A=w240-h480", popular: false },
-        { name: "Rise of Kingdoms", category: "simulasi", icon: "https://play-lh.googleusercontent.com/SCBdZvAXEV5gqTIL4Oei1n4wSy5kpFvzPaRKG1JhT92gCSBC5nDrwQHwovQbNfBmSg=w240-h480", popular: true },
-        { name: "State of Survival", category: "simulasi", icon: "https://play-lh.googleusercontent.com/5hYhF7w94S-M6CpV4uymkFwrFHS-JqeIIQcPBCa1dpMCFNK9O-HfhBxWQ5Z7sUasWQ=w240-h480", popular: false },
-        { name: "Whiteout Survival", category: "simulasi", icon: "https://play-lh.googleusercontent.com/xNlQ0tCvYFCzVZkPmKQm9Q1PUC4HqGk1tOcxL8V4S1BZ5lSshEaGtTpxCkfJ9HBUZ_o=w240-h480", popular: true },
-        { name: "Clash of Clans", category: "simulasi", icon: "https://play-lh.googleusercontent.com/Yh4G_7VJLHMgIVATnTVGV5bQ7HQiXftoZ1pVK5C4LCOaF0W3PsY2c_9C9ffwzI29_5E=w240-h480", popular: true },
-        { name: "Clash Royale", category: "action", icon: "https://play-lh.googleusercontent.com/2w0onCh3qM9t2GzU1qKoh3b2RLZJpJmFjMnXYk-m2F1LciwIRYOiKMa4N1H8RZFfkg=w240-h480", popular: false },
-        { name: "Brawl Stars", category: "action", icon: "https://play-lh.googleusercontent.com/ggruEKoK3lzIqF6XbPudCkPcgL6czk03e0blHwJf1PlAUGj6KGcrx2HbC4-wq6eGpQ=w240-h480", popular: true },
-        { name: "Garena Undawn", category: "action", icon: "https://play-lh.googleusercontent.com/0Am42HmXo1TT6zX9pTE-sB2lqB0cmUwJdqDnGqJeqRAdX9mYBUphr-SHTHAl9fYHPg=w240-h480", popular: false },
-        { name: "FIFA Mobile", category: "simulasi", icon: "https://play-lh.googleusercontent.com/_SKTZstPSfGV2fF-CtH-FFRgIac-lSgNF4FIQEAbQ2WJtMQ4nJfT2p6UZ2fUEgsLUPQ=w240-h480", popular: true },
-        { name: "eFootball 2025", category: "simulasi", icon: "https://play-lh.googleusercontent.com/_yA9d0DkR05Yz5C8f0R4GZkS12tWx58OXqLQgKMYC9dl3fZW8i9ApyzTqhP1fAsBQPM=w240-h480", popular: false },
-        { name: "Harry Potter Magic Awakened", category: "rpg", icon: "https://play-lh.googleusercontent.com/T7qUABhC1v3LxLMTvVQPTNEyWcGJ2_VfW9U14c_nw1Nk-tXTHJd-BX5YwCpzZ7o8RA=w240-h480", popular: false },
-        { name: "Diablo Immortal", category: "rpg", icon: "https://play-lh.googleusercontent.com/kQCnwqCb6QnCWFL5oK-6RYkCUSIr92MNDF46CdlJ0g2ScnPPsZPxzKw-6cTNWyOWbJc=w240-h480", popular: true },
-        { name: "Honkai Star Rail", category: "rpg", icon: "https://play-lh.googleusercontent.com/jA1rJ0cLJmOoMh1PqK_B0rD2e7n2tFJX6dGmpPA-hz0pDk5uYBvDJQbO3hYNtLpmYw=w240-h480", popular: true },
-        { name: "Wuthering Waves", category: "rpg", icon: "https://play-lh.googleusercontent.com/2hNqWUdQ4W2s78FmB6zq_BjZwHrp_hM2cDeA7BsXh6FYU8R9HMEidkO-W2kZMBFqwjk=w240-h480", popular: true },
-        { name: "Nikke: Goddess of Victory", category: "action", icon: "https://play-lh.googleusercontent.com/Bg4ySxRIV45oO9jVbk9o_Gtl82hV9q1U0Z0k45DkKvCg5zPrl8adUe6qScT8hSS8VQ=w240-h480", popular: false },
-        { name: "Tower of Fantasy", category: "rpg", icon: "https://play-lh.googleusercontent.com/XBf6eB2Nf0YWWphdFL1rk8bLs6y8U05AD8PR7fG5NpzpCAjhX2XQmtei1yYAVqUyDQ=w240-h480", popular: true },
-        { name: "Gangstar Vegas", category: "action", icon: "https://play-lh.googleusercontent.com/n4B6xNwQC3sIDHzgE7Q-CbPqh60OFMpzM-KvODjNQQp4-LNWP19cm4i5BVBN7thLbg=w240-h480", popular: false },
-        { name: "Asphalt 9", category: "simulasi", icon: "https://play-lh.googleusercontent.com/0OksawqE7Dux8r0XzAG64h5N29uE7co1RUCcAjD0OzT2LY1h_0lEVjSGB2HS3zpgKg=w240-h480", popular: true },
-        { name: "Real Racing 3", category: "simulasi", icon: "https://play-lh.googleusercontent.com/Wm3w1djI9RkEjiXeMtcw1HrN2k8zP6afuX8VU3Y6dGMD-Lt3c1VqwvG4P6CgpBvI5Q=w240-h480", popular: false },
-        { name: "Marvel Future Fight", category: "action", icon: "https://play-lh.googleusercontent.com/MoMGhrfdTd2ak7QFg2X4b6K-T0jW8AqG48BKWpoCBHYUI1EhgLZqQ55r1dU4HtdjYQ=w240-h480", popular: false },
-        { name: "One Punch Man World", category: "action", icon: "https://play-lh.googleusercontent.com/tqPfe5OdL89DTS9G5NlbC4-t6nM5H2ekhXYSK2wxLFqZc3eRq9a2kGqDHCqP2CO76Q=w240-h480", popular: true },
-        { name: "Dragon Raja", category: "rpg", icon: "https://play-lh.googleusercontent.com/g2XgA6uD1sUMyTf8OQOCjHk6aozdV2aeAqK7gXHnxQLn6ak2Pp28y2qUC1zSJ8lWcw=w240-h480", popular: false },
-        { name: "Perfect World Mobile", category: "rpg", icon: "https://play-lh.googleusercontent.com/cGqg1eSu9AI_xxC6nHAWgyhKbpuqY8sJ7tk1mOQmO1JOSSK7gvDsYoc0-t2Q6tKJAg=w240-h480", popular: false },
-        { name: "Undawn", category: "action", icon: "https://play-lh.googleusercontent.com/rXg7_7A8lOYwCgbV08_15cK8VvClBRnOBsFd1j9Y76ZXLFY1Ng4P9V1ZLEBnF5m0gI8=w240-h480", popular: false },
-        { name: "LifeAfter", category: "action", icon: "https://play-lh.googleusercontent.com/kStCC7VmgjXaHr86eNGlNJlhYZrQTy7O1EZEyykKvYgfY7S3LS9PYIqUs8uSJ6Q8GQ=w240-h480", popular: true },
-        { name: "Farlight 84", category: "action", icon: "https://play-lh.googleusercontent.com/UX7DUF4hnjQpuEIS2T4ZXG1MGP6wP3W6-rHEPzQ3A2bxGhbtng_ewqWNde5AHeMjuQ=w240-h480", popular: true },
-        { name: "Blood Strike", category: "action", icon: "https://play-lh.googleusercontent.com/BfDQmU2Q79nM9SRWNGQH9TENkw_j9TTJcZvFBRivI6XjBdAWa_HH4wBtyew8z7y1KQ=w240-h480", popular: false },
-        { name: "Stumble Guys", category: "action", icon: "https://play-lh.googleusercontent.com/zlM1tPtnUeBqDgOIIoM9KDoVwkM80e2k4_ggCfud6oVwN25z4Bdhp_M1gY88cFyu2g=w240-h480", popular: true },
-        { name: "Among Us", category: "action", icon: "https://play-lh.googleusercontent.com/oqWcO2V1nxMkRljbPp3-TuJm8POW3qBqvGVb7wYyzEELzUyG-3uy7idDdYZCvK9a6Q=w240-h480", popular: true },
-        { name: "Roblox", category: "simulasi", icon: "https://play-lh.googleusercontent.com/WNWZaxi9RKJq-IigWwRkU8PJowDTHDLLx9tuJ4zdYWOSWwkjjhpEo5Yw24J7BZFRVQ=w240-h480", popular: true },
-        { name: "Minecraft", category: "simulasi", icon: "https://play-lh.googleusercontent.com/VSwHQjcAttxsLE47RuS4PqpC4LT7lCoSjE7Hx5AW_yCxtDvcnsHHvm5CTuL5BPN-uRTP=w240-h480", popular: true },
-        { name: "Egg Wars", category: "action", icon: "https://play-lh.googleusercontent.com/iyFkLsGqgL8k2hdWYjH9X9NX5rUGXCCbQCA3Hw8X_7ysCucHS1-fT23l_bziGP6UJsI=w240-h480", popular: false },
-        { name: "Sausage Man", category: "action", icon: "https://play-lh.googleusercontent.com/x8R6pP25nXc2JkR81eAdrJrpX-o7CR23p9RPKyPpD3xR_ziw9_Xg2lC94ut9Y4QOjw=w240-h480", popular: true },
-        { name: "Eternal Evolution", category: "rpg", icon: "https://play-lh.googleusercontent.com/4HpehRR6dNcjqV_9kJBhN36O-Z7KNUqDR-lpmMqHZx-qO7CWQEjEogHLcQ7OyC71gg=w240-h480", popular: false },
-        { name: "Watcher of Realms", category: "rpg", icon: "https://play-lh.googleusercontent.com/4ayPk_1c1iyA6AXj2hgZfT0v69qKZZrOsl3sqn55zG6ntMS6hG-DzE1lc82CP8efaw=w240-h480", popular: true },
-        { name: "AFK Journey", category: "rpg", icon: "https://play-lh.googleusercontent.com/yFF0TFT7qY8yYyjwN15NDk0yScYmqT0mDEe95HKSQwH-RQ5eknE6U8wDmNaQod2kOBA=w240-h480", popular: true },
-        { name: "CookieRun Kingdom", category: "simulasi", icon: "https://play-lh.googleusercontent.com/5YmC_ao4F1L6i-WTZbnfDCg59fZR_i4y4J9k4gPjGf9i1uQg5X0xrLMSqJbP7h_FtQ=w240-h480", popular: true },
-        { name: "Ragnarok X Next Generation", category: "rpg", icon: "https://play-lh.googleusercontent.com/UWcVtOQz2nH9Q3oNq6-Ur7KkTX1TrdTJuQJAEpSDyTihVk__WAc7k3a5h8nAT-YMS3U=w240-h480", popular: false },
-        { name: "Summoners War", category: "rpg", icon: "https://play-lh.googleusercontent.com/K9nwcLqsx0o2TsKs5OzEcU2tk-DUkqxMhP8rUXM1mI3zF2XGVlH3q0s_bF0xT12AKWU=w240-h480", popular: true },
-        { name: "Epic Seven", category: "rpg", icon: "https://play-lh.googleusercontent.com/oOEDU3YooUefYikCQ_ajrFGv-HUgOdWKBq_r6PQCxZzLLJYd2flcniTbWxtCBH7V5Og=w240-h480", popular: false },
-        { name: "Lineage W", category: "rpg", icon: "https://play-lh.googleusercontent.com/J7L8xFEix7tmH9-5Q4TXbW2wX4LELtMpVb3ZKM_bOQkMmwCj80cH9Rpk83fPqu9PpA=w240-h480", popular: true },
-        { name: "Mu Origin 3", category: "rpg", icon: "https://play-lh.googleusercontent.com/AuFl2HlQr6zO-4gLaeEWCJD2zPy6jCbr1kxJQl2od9Q9V9kH9WJqQF_yVtLvCytv1-s=w240-h480", popular: false },
-        { name: "Vengeance RPG", category: "rpg", icon: "https://play-lh.googleusercontent.com/gm2ng6OOQ4_SItlPmCgyr5c8Q2jvWrkm48QzE6fMpA55nAhvUyKS4c8gOph7ctB3RjY=w240-h480", popular: false },
-        { name: "Dragon Nest M", category: "rpg", icon: "https://play-lh.googleusercontent.com/C-2zxR8Bk69cF3bKfUK95YllG0o2S-0qw6RTlG-CisWPEkfHB-Xd8HW87lx5gN9Ihg=w240-h480", popular: true }
-    ];
+    // DATA HARGA
+    const gamePricesUSD = {
+        "PUBG Mobile": { Android: [5, 7, 10], iPhone: [7.5, 10.5, 15] },
+        "Free Fire": { Android: [4.5, 6.5, 9.5], iPhone: [6.8, 9.8, 14.3] },
+        "Mobile Legends": { Android: [5.5, 7.5, 11], iPhone: [8.3, 11.3, 16.5] },
+        "Call of Duty Mobile": { Android: [5, 7, 10], iPhone: [7.5, 10.5, 15] },
+        "Genshin Impact": { Android: [6, 8.5, 12], iPhone: [9, 12.8, 18] },
+        "Valorant": { Android: [4, 6, 9], iPhone: [6, 9, 13.5] },
+        "Farlight 84": { Android: [4.8, 6.8, 9.8], iPhone: [7.2, 10.2, 14.7] }
+    };
 
-    // tambahan sampai 55+ (total 55)
-    const extraGames = [
-        { name: "Sky Children of Light", category: "rpg", icon: "https://play-lh.googleusercontent.com/hNIPd8F9CVxWqwQvNVR3CQ9zgQfJV2Y-nq7-cXOYvQY79PSM7teUZkq8adl-yGq6gg=w240-h480", popular: false },
-        { name: "PUBG New State", category: "action", icon: "https://play-lh.googleusercontent.com/E7FygpR2wOKUXKogqdztbtPy_z_c30dLAZJkX93mPYuIQf2Rclc0NRhBfRAvV7wlYQ=w240-h480", popular: true }
-    ];
-    const finalGames = [...gamesList, ...extraGames];
+    const paketLabels = { id: ["14 Hari", "30 Hari", "60 Hari"], en: ["14 Days", "30 Days", "60 Days"] };
+    const paymentMethodsList = ["PayPal", "QRIS", "Crypto"];
     
-    // Variabel global
-    let currentFilter = "all";
-    let searchQuery = "";
-    const adminPhone = "6285823710815"; // Nomor WA asli
-    const PRICE = 100000; // Rp100.000
+    // Data game dengan video sample (video pendek dari samples library)
+    const games = [
+        { name: "PUBG Mobile", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ1L1oeq0O83iQLxZPgGa0667Ppae27slZsdj_orTTxQ&s=10", desc: { id: "ESP, Aimbot, No Recoil", en: "ESP, Aimbot, No Recoil" }, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" },
+        { name: "Free Fire", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRIanj8jNJDFOzMixdsXW9ES6L3k2h-hvvAHu1eIFtuw&s", desc: { id: "Diamond Hack, Wallhack", en: "Diamond Hack, Wallhack" }, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4" },
+        { name: "Mobile Legends", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjGrXZQoyfip2gmYpnC8pMPGdQ4JkBiRd9EBbQ3saBuQ&s=10", desc: { id: "Map Hack, Skin Unlocker", en: "Map Hack, Skin Unlocker" }, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" },
+        { name: "Call of Duty Mobile", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTESeKStEAEoqjIE_JGXqk5I-X1xytLcjK1DxG4Hdu91A&s=10", desc: { id: "Radar, Aim Assist", en: "Radar, Aim Assist" }, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4" },
+        { name: "Genshin Impact", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRguULEwY0seVomZv6CStI9KcP9rs1xxOdblgHSWFHn5g&s=10", desc: { id: "God Mode, Damage Multi", en: "God Mode, Damage Multi" }, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" },
+        { name: "Valorant", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlTuataF1tUc9MNpLuz82cipmVwJnAKXLQpdRm6CScC4O1jPgxNX6zm2nv&s=10", desc: { id: "TriggerBot, ESP", en: "TriggerBot, ESP" }, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" },
+        { name: "Farlight 84", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPqUbbk0QisICb8Arx6bPeIG9WuZfKfyIEYyfXy0BK7A&s=10", desc: { id: "Aimbot, Fly Hack", en: "Aimbot, Fly Hack" }, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4" }
+    ];
 
-    function formatRupiah(amount) {
-        return "Rp " + amount.toLocaleString('id-ID');
+    let currentLang = "id";
+
+    const texts = {
+        id: {
+            onlineLabel: "Online Sekarang", peakNormal: "⭐ Waktu normal, pelayanan cepat", peakBusy: "🔥 Jam sibuk! 🔥 Antrean padat", peakQuiet: "🌙 Sepi, chat admin tetap aktif", peakMorning: "☀️ Pagi hari, mulai ramai",
+            paymentTitle: "Metode Pembayaran", telegramText: "Join Telegram Group", footerText: "© 2026 LLC STORE | MOD PREMIUM",
+            modalTitle: "Form Order MOD", labelGame: "Game", labelPlatform: "Platform", labelPaket: "Paket", labelPayment: "Metode Pembayaran",
+            copyText: "Salin Pesanan", sendText: "Kirim ke Chat APK", infoText: "Pesanan akan disalin, buka chat APK dan paste",
+            toastCopied: "✅ Pesanan disalin! Buka Chat APK dan paste.", toastSent: "✅ Membuka Chat APK...",
+            hero1: "Mod Premium", hero2: "Anti Ban", hero3: "24/7 Support", hero4: "Auto Update",
+            collabTitle: "🤝 MENERIMA KERJA SAMA", collabDesc: "Kami membuka peluang kerja sama untuk YouTuber, Streamer, Content Creator, serta para pembuat APK MOD yang ingin berkolaborasi.", collabDesc2: "💰 Komisi menarik • Akses eksklusif • Support penuh",
+            previewTemplate: (g, plat, paket, price, method) => `📋 ORDER MOD LLC STORE\n━━━━━━━━━━━━━━━━━━━━\n🎮 Game: ${g}\n📱 Platform: ${plat}\n📦 Paket: ${paket}\n💰 Harga: $${price}\n💳 Metode: ${method}\n━━━━━━━━━━━━━━━━━━━━\n⏰ Mohon diproses, terima kasih.`
+        },
+        en: {
+            onlineLabel: "Online Now", peakNormal: "⭐ Normal hours, fast service", peakBusy: "🔥 Peak hours! 🔥 Busy queue", peakQuiet: "🌙 Quiet time, admin still active", peakMorning: "☀️ Morning, starting to get busy",
+            paymentTitle: "Payment Methods", telegramText: "Join Telegram Group", footerText: "© 2026 LLC STORE | MOD PREMIUM",
+            modalTitle: "Order MOD Form", labelGame: "Game", labelPlatform: "Platform", labelPaket: "Package", labelPayment: "Payment Method",
+            copyText: "Copy Order", sendText: "Send to Chat APK", infoText: "Order will be copied, open chat APK and paste",
+            toastCopied: "✅ Order copied! Open Chat APK and paste.", toastSent: "✅ Opening Chat APK...",
+            hero1: "Mod Premium", hero2: "Anti Ban", hero3: "24/7 Support", hero4: "Auto Update",
+            collabTitle: "🤝 COLLABORATION WELCOME", collabDesc: "We are open for collaboration with YouTubers, Streamers, Content Creators, and MOD APK developers.", collabDesc2: "💰 Attractive commission • Exclusive access • Full support",
+            previewTemplate: (g, plat, paket, price, method) => `📋 ORDER MOD LLC STORE\n━━━━━━━━━━━━━━━━━━━━\n🎮 Game: ${g}\n📱 Platform: ${plat}\n📦 Package: ${paket}\n💰 Price: $${price}\n💳 Method: ${method}\n━━━━━━━━━━━━━━━━━━━━\n⏰ Please process, thank you.`
+        }
+    };
+
+    function applyLanguage() {
+        const t = texts[currentLang];
+        document.getElementById("onlineLabel").innerHTML = t.onlineLabel;
+        document.getElementById("paymentTitle").innerHTML = `<i class="fas fa-credit-card"></i> ${t.paymentTitle}`;
+        document.getElementById("telegramText").innerHTML = t.telegramText;
+        document.getElementById("footerText").innerHTML = t.footerText;
+        document.getElementById("modalTitle").innerHTML = `<i class="fas fa-cart-shopping"></i> ${t.modalTitle}`;
+        document.getElementById("labelGame").innerHTML = t.labelGame;
+        document.getElementById("labelPlatform").innerHTML = t.labelPlatform;
+        document.getElementById("labelPaket").innerHTML = t.labelPaket;
+        document.getElementById("labelPayment").innerHTML = t.labelPayment;
+        document.getElementById("copyText").innerHTML = t.copyText;
+        document.getElementById("sendText").innerHTML = t.sendText;
+        document.getElementById("infoText").innerHTML = t.infoText;
+        document.getElementById("collabTitle").innerHTML = t.collabTitle;
+        document.getElementById("collabDesc").innerHTML = t.collabDesc;
+        document.getElementById("collabDesc2").innerHTML = t.collabDesc2;
+        document.querySelectorAll(".hero-text-1").forEach(el => el.innerHTML = t.hero1);
+        document.querySelectorAll(".hero-text-2").forEach(el => el.innerHTML = t.hero2);
+        document.querySelectorAll(".hero-text-3").forEach(el => el.innerHTML = t.hero3);
+        document.querySelectorAll(".hero-text-4").forEach(el => el.innerHTML = t.hero4);
+        document.getElementById("langID").classList.toggle("active", currentLang === "id");
+        document.getElementById("langEN").classList.toggle("active", currentLang === "en");
+        renderGameList();
+        renderPaymentMethods();
+        updatePeakTimeText();
     }
 
-    function renderGames() {
-        const grid = document.getElementById("gamesGrid");
-        let filtered = finalGames.filter(game => {
-            let matchFilter = false;
-            if (currentFilter === "all") matchFilter = true;
-            else if (currentFilter === "populer") matchFilter = game.popular === true;
-            else matchFilter = game.category === currentFilter;
-            let matchSearch = game.name.toLowerCase().includes(searchQuery.toLowerCase());
-            return matchFilter && matchSearch;
+    function setLanguage(lang) { currentLang = lang; applyLanguage(); }
+
+    function renderPaymentMethods() {
+        const container = document.getElementById("paymentMethods");
+        if (!container) return;
+        container.innerHTML = paymentMethodsList.map(m => `<div class="payment-chip"><i class="fas fa-check-circle"></i> ${m}</div>`).join('');
+        const metodeSelect = document.getElementById("modalPaymentMethod");
+        if (metodeSelect) {
+            metodeSelect.innerHTML = '<option value="">-- ' + (currentLang === "id" ? "Pilih Metode" : "Select Method") + ' --</option>' + 
+                paymentMethodsList.map(m => `<option value="${m}">${m}</option>`).join('');
+        }
+    }
+
+    // Setup video player dengan kontrol
+    function setupVideoPlayer(videoElement, playBtn, progressBar, timeDisplay) {
+        // Play/Pause
+        playBtn.addEventListener('click', () => {
+            if (videoElement.paused) {
+                videoElement.play();
+                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            } else {
+                videoElement.pause();
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+            }
         });
         
-        if (filtered.length === 0) {
-            grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:3rem;">⚠️ Tidak ditemukan game dengan kata kunci tersebut</div>`;
-            return;
-        }
+        // Update progress
+        videoElement.addEventListener('timeupdate', () => {
+            const percent = (videoElement.currentTime / videoElement.duration) * 100;
+            progressBar.style.width = percent + '%';
+            const minutes = Math.floor(videoElement.currentTime / 60);
+            const seconds = Math.floor(videoElement.currentTime % 60);
+            timeDisplay.textContent = `${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+        });
         
-        grid.innerHTML = filtered.map((game, idx) => {
-            const orderMsg = `Halo Kak Admin MODNesia, saya mau ORDER MOD PREMIUM untuk game *${game.name}* dengan harga ${formatRupiah(PRICE)} (aktif 60 hari). Mohon info pembayaran dan aktivasi. Terima kasih!`;
-            const waLink = `https://wa.me/${adminPhone}?text=${encodeURIComponent(orderMsg)}`;
+        // Seek
+        const progressContainer = progressBar.parentElement;
+        progressContainer.addEventListener('click', (e) => {
+            const rect = progressContainer.getBoundingClientRect();
+            const pos = (e.clientX - rect.left) / rect.width;
+            videoElement.currentTime = pos * videoElement.duration;
+        });
+        
+        // Update total duration when loaded
+        videoElement.addEventListener('loadedmetadata', () => {
+            const minutes = Math.floor(videoElement.duration / 60);
+            const seconds = Math.floor(videoElement.duration % 60);
+            const totalTime = document.createElement('span');
+            totalTime.className = 'video-time';
+            totalTime.textContent = ` / ${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+            timeDisplay.parentNode.appendChild(totalTime);
+        });
+    }
+
+    function renderGameList() {
+        const container = document.getElementById("gameList");
+        if (!container) return;
+        
+        container.innerHTML = games.map((game, index) => {
+            const prices = gamePricesUSD[game.name];
             return `
-                <div class="game-card" style="animation-delay: ${idx * 0.02}s">
-                    <div class="card-img-area">
-                        <img class="game-icon" src="${game.icon}" alt="${game.name}" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/330px-No-Image-Placeholder.svg.png?20200922080230';">
-                        <div class="mod-badge"><i class="fas fa-bolt"></i> MOD 60H</div>
+                <div class="game-card">
+                    <div class="game-header">
+                        <img class="game-img" src="${game.img}" onerror="this.src='https://via.placeholder.com/55'">
+                        <div><div class="game-name">${game.name}</div><div style="font-size: 11px; color: #94a3b8;">${game.desc[currentLang]}</div></div>
                     </div>
-                    <div class="card-content">
-                        <h3>${game.name} <span class="price-mod">${formatRupiah(PRICE)}</span></h3>
-                        <div class="mod-duration"><i class="fas fa-hourglass-half"></i> Aktif 60 Hari | Garansi + Update</div>
-                        <button class="btn-order" onclick="window.open('${waLink}', '_blank')"><i class="fab fa-whatsapp"></i> ORDER SEKARANG</button>
+                    <div class="video-container">
+                        <video id="video-${index}" poster="${game.img}">
+                            <source src="${game.videoUrl}" type="video/mp4">
+                            Browser Anda tidak mendukung video.
+                        </video>
+                        <div class="video-controls">
+                            <button class="play-pause-btn" id="play-btn-${index}"><i class="fas fa-play"></i></button>
+                            <div class="video-time" id="time-${index}">00:00</div>
+                            <div class="video-progress">
+                                <div class="video-progress-fill" id="progress-${index}"></div>
+                            </div>
+                        </div>
                     </div>
+                    <div class="price-wrapper">
+                        <div class="price-platform-card">
+                            <div class="price-platform-header"><span><i class="fab fa-android"></i> Android</span></div>
+                            <div class="price-list">
+                                <div class="price-item-card"><div class="price-days">${paketLabels[currentLang][0]}</div><div class="price-amount">$${prices.Android[0]}</div></div>
+                                <div class="price-item-card"><div class="price-days">${paketLabels[currentLang][1]}</div><div class="price-amount">$${prices.Android[1]}</div></div>
+                                <div class="price-item-card"><div class="price-days">${paketLabels[currentLang][2]}</div><div class="price-amount">$${prices.Android[2]}</div></div>
+                            </div>
+                        </div>
+                        <div class="price-platform-card">
+                            <div class="price-platform-header"><span><i class="fab fa-apple"></i> iPhone (+50%)</span></div>
+                            <div class="price-list">
+                                <div class="price-item-card"><div class="price-days">${paketLabels[currentLang][0]}</div><div class="price-amount">$${prices.iPhone[0]}</div></div>
+                                <div class="price-item-card"><div class="price-days">${paketLabels[currentLang][1]}</div><div class="price-amount">$${prices.iPhone[1]}</div></div>
+                                <div class="price-item-card"><div class="price-days">${paketLabels[currentLang][2]}</div><div class="price-amount">$${prices.iPhone[2]}</div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn-order" onclick="openOrderModal('${game.name}')"><i class="fas fa-cart-shopping"></i> ${currentLang === "id" ? "Beli Mod" : "Buy Mod"}</button>
                 </div>
             `;
         }).join('');
+        
+        // Setup video players setelah render
+        setTimeout(() => {
+            games.forEach((_, index) => {
+                const video = document.getElementById(`video-${index}`);
+                const playBtn = document.getElementById(`play-btn-${index}`);
+                const progressBar = document.getElementById(`progress-${index}`);
+                const timeDisplay = document.getElementById(`time-${index}`);
+                if (video && playBtn && progressBar && timeDisplay) {
+                    setupVideoPlayer(video, playBtn, progressBar, timeDisplay);
+                }
+            });
+        }, 100);
     }
 
-    document.getElementById("searchGame").addEventListener("input", (e) => {
-        searchQuery = e.target.value;
-        renderGames();
-    });
+    // MODAL ORDER FUNCTIONS
+    let currentGameName = "";
     
-    document.querySelectorAll(".filter-chip").forEach(chip => {
-        chip.addEventListener("click", () => {
-            document.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("active"));
-            chip.classList.add("active");
-            currentFilter = chip.getAttribute("data-filter");
-            renderGames();
+    function openOrderModal(gameName) {
+        currentGameName = gameName;
+        document.getElementById("modalGame").value = gameName;
+        updatePaketOptions();
+        document.getElementById("orderModal").style.display = "flex";
+        updatePreview();
+    }
+    
+    function closeModal() { document.getElementById("orderModal").style.display = "none"; }
+    
+    function updatePaketOptions() {
+        const platform = document.getElementById("modalPlatform").value;
+        const prices = gamePricesUSD[currentGameName];
+        const priceArr = platform === "Android" ? prices.Android : prices.iPhone;
+        const paketList = paketLabels[currentLang];
+        const paketSelect = document.getElementById("modalPaket");
+        paketSelect.innerHTML = paketList.map((label, idx) => `<option value='${JSON.stringify({ label, price: priceArr[idx] })}'>${label} - $${priceArr[idx]}</option>`).join('');
+    }
+    
+    function updatePreview() {
+        const game = document.getElementById("modalGame").value;
+        const platform = document.getElementById("modalPlatform").value;
+        const paketVal = document.getElementById("modalPaket").value;
+        const metode = document.getElementById("modalPaymentMethod").value;
+        if (!paketVal) { document.getElementById("modalPreview").innerHTML = currentLang === "id" ? "⚠️ Pilih paket" : "⚠️ Select package"; return; }
+        const paket = JSON.parse(paketVal);
+        const preview = texts[currentLang].previewTemplate(game, platform, paket.label, paket.price, metode || (currentLang === "id" ? "Belum pilih" : "Not selected"));
+        document.getElementById("modalPreview").innerHTML = preview.replace(/\n/g, '<br>');
+    }
+    
+    function getCurrentMessage() {
+        const game = document.getElementById("modalGame").value;
+        const platform = document.getElementById("modalPlatform").value;
+        const paketVal = document.getElementById("modalPaket").value;
+        const metode = document.getElementById("modalPaymentMethod").value;
+        if (!paketVal) return currentLang === "id" ? "⚠️ Pilih paket" : "⚠️ Select package";
+        if (!metode) return currentLang === "id" ? "⚠️ Pilih metode" : "⚠️ Select method";
+        const paket = JSON.parse(paketVal);
+        return texts[currentLang].previewTemplate(game, platform, paket.label, paket.price, metode);
+    }
+    
+    function copyMessage() {
+        let msg = getCurrentMessage();
+        if (msg.startsWith("⚠️")) { showToast(msg); return; }
+        navigator.clipboard.writeText(msg);
+        showToast(texts[currentLang].toastCopied);
+    }
+    
+    function sendMessage() {
+        let msg = getCurrentMessage();
+        if (msg.startsWith("⚠️")) { showToast(msg); return; }
+        
+        let riwayat = JSON.parse(localStorage.getItem('llc_riwayat_mod') || '[]');
+        riwayat.unshift({ 
+            tanggal: new Date().toLocaleString(), 
+            game: document.getElementById("modalGame").value, 
+            platform: document.getElementById("modalPlatform").value, 
+            paket: JSON.parse(document.getElementById("modalPaket").value).label, 
+            metode: document.getElementById("modalPaymentMethod").value, 
+            status: 'Diproses' 
         });
-    });
+        localStorage.setItem('llc_riwayat_mod', JSON.stringify(riwayat.slice(0, 50)));
+        
+        if (window.Android && window.Android.sendMessageToAdmin) {
+            window.Android.sendMessageToAdmin(msg);
+            showToast(currentLang === "id" ? "✅ Pesanan dikirim!" : "✅ Order sent!");
+            closeModal();
+        } else {
+            window.location.href = `llcstore://customer_chat?message=${encodeURIComponent(msg)}`;
+            showToast(texts[currentLang].toastSent);
+            closeModal();
+        }
+    }
     
-    document.getElementById("heroWhatsappBtn").addEventListener("click", () => {
-        const msg = `Halo *MODNesia Store*! Saya ingin order MOD PREMIUM 60 hari. Mohon daftar lengkap dan cara order. Terima kasih.`;
-        window.open(`https://wa.me/${adminPhone}?text=${encodeURIComponent(msg)}`, '_blank');
-    });
+    function showToast(msg) { 
+        let t = document.getElementById('toastMsg'); 
+        t.innerHTML = msg; 
+        t.classList.add('show'); 
+        setTimeout(() => t.classList.remove('show'), 2000); 
+    }
     
-    renderGames();
+    // ONLINE COUNT DINAMIS
+    let currentOnline = 1482, targetOnline = 1482;
+    
+    function getOnlineByHour() {
+        const hour = new Date().getHours();
+        if (hour >= 19 && hour <= 22) return Math.floor(Math.random() * (20068 - 10000 + 1) + 10000);
+        if (hour >= 23 || hour <= 4) return Math.floor(Math.random() * (3000 - 960 + 1) + 960);
+        if (hour >= 5 && hour <= 10) return Math.floor(Math.random() * (8000 - 3000 + 1) + 3000);
+        return Math.floor(Math.random() * (15000 - 8000 + 1) + 8000);
+    }
+    
+    function updatePeakTimeText() {
+        const hour = new Date().getHours();
+        const t = texts[currentLang];
+        let txt = t.peakNormal;
+        if (hour >= 19 && hour <= 22) txt = t.peakBusy;
+        else if (hour >= 23 || hour <= 4) txt = t.peakQuiet;
+        else if (hour >= 5 && hour <= 10) txt = t.peakMorning;
+        document.getElementById("peakTimeInfo").innerHTML = `${txt} | ${hour.toString().padStart(2,'0')}:00`;
+    }
+    
+    function updateOnlineCount() {
+        setInterval(() => {
+            if (Math.random() < 0.4) targetOnline = getOnlineByHour();
+            else { let delta = Math.floor(Math.random() * 101) - 50; targetOnline = Math.min(20068, Math.max(960, targetOnline + delta)); }
+            const steps = 10, stepTime = 3000 / steps;
+            const start = currentOnline, end = targetOnline;
+            let step = 0;
+            const interval = setInterval(() => {
+                step++;
+                currentOnline = Math.min(20068, Math.max(960, Math.floor(start + (end - start) * (step / steps))));
+                document.getElementById("onlineCount").innerHTML = currentOnline.toLocaleString();
+                if (step >= steps) { clearInterval(interval); currentOnline = end; document.getElementById("onlineCount").innerHTML = currentOnline.toLocaleString(); }
+            }, stepTime);
+        }, 30000);
+        setInterval(() => updatePeakTimeText(), 60000);
+    }
+    
+    // EVENT LISTENERS
+    document.getElementById("modalPlatform")?.addEventListener("change", () => { updatePaketOptions(); updatePreview(); });
+    document.getElementById("modalPaket")?.addEventListener("change", updatePreview);
+    document.getElementById("modalPaymentMethod")?.addEventListener("change", updatePreview);
+    document.getElementById("copyOrderBtn")?.addEventListener("click", copyMessage);
+    document.getElementById("sendOrderBtn")?.addEventListener("click", sendMessage);
+    window.onclick = e => { if (e.target === document.getElementById("orderModal")) closeModal(); };
+    
+    // INIT
+    function init() {
+        renderGameList();
+        renderPaymentMethods();
+        currentOnline = getOnlineByHour();
+        targetOnline = currentOnline;
+        document.getElementById("onlineCount").innerHTML = currentOnline.toLocaleString();
+        updateOnlineCount();
+        setTimeout(() => { 
+            const loader = document.getElementById("loadingScreen"); 
+            if (loader) { 
+                loader.style.opacity = "0"; 
+                setTimeout(() => loader.style.display = "none", 500); 
+            }
+        }, 1000);
+        applyLanguage();
+    }
+    
+    init();
 </script>
 </body>
 </html>
