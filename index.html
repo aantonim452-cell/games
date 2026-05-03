@@ -8,23 +8,69 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { font-family: 'Inter', sans-serif; background: #0a0a1a; color: #fff; min-height: 100vh; }
+        body { font-family: 'Inter', sans-serif; background: #0a0a1a; color: #fff; min-height: 100vh; transition: background 0.3s, color 0.3s; }
+        
+        /* Dark/Light Mode Variables */
+        body.light-mode { background: #f0f2f5; color: #1e293b; }
+        body.light-mode .bg-master .nebula-1,
+        body.light-mode .bg-master .nebula-2,
+        body.light-mode .bg-master .nebula-3 { opacity: 0.1; }
+        body.light-mode .hero,
+        body.light-mode .online-card,
+        body.light-mode .payment-section,
+        body.light-mode .game-card,
+        body.light-mode .collab-section,
+        body.light-mode .telegram-btn,
+        body.light-mode .modal-content { background: rgba(255,255,255,0.95); color: #1e293b; border-color: #e2e8f0; }
+        body.light-mode .btn-order { background: linear-gradient(95deg, #f59e0b, #d97706); color: white; }
+        body.light-mode .price-amount { color: #f59e0b; }
+        body.light-mode .game-name { background: linear-gradient(45deg, #f59e0b, #ea580c); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        body.light-mode .badge { background: rgba(0,0,0,0.05); color: #1e293b; }
+        body.light-mode .payment-chip { background: #e2e8f0; color: #1e293b; }
+        body.light-mode .price-item-card { background: #f1f5f9; }
+        body.light-mode .collab-email-text { background: rgba(245,158,11,0.1); color: #f59e0b; }
+        
         .bg-master { position: fixed; inset: 0; z-index: -10; overflow: hidden; }
         .nebula-1, .nebula-2, .nebula-3 { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3; animation: float 20s infinite; }
         .nebula-1 { width: 500px; height: 500px; background: #8b5cf6; top: -200px; left: -200px; }
         .nebula-2 { width: 600px; height: 600px; background: #3b82f6; bottom: -200px; right: -200px; animation-delay: -5s; }
         .nebula-3 { width: 400px; height: 400px; background: #f59e0b; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-delay: -10s; }
         @keyframes float { 0%,100% { transform: translate(0,0); } 50% { transform: translate(20px,-20px); } }
+        
+        /* Loading Screen - Skeleton */
         .loading-screen { position: fixed; inset: 0; background: #0a0a1a; z-index: 10000; display: flex; justify-content: center; align-items: center; transition: opacity 0.8s; }
+        body.light-mode .loading-screen { background: #f0f2f5; }
         .loader-ring { width: 60px; height: 60px; border: 3px solid rgba(245,158,11,0.2); border-top: 3px solid #f59e0b; border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 15px; }
         @keyframes spin { to { transform: rotate(360deg); } }
+        
+        /* Skeleton Loading */
+        .skeleton { background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 12px; }
+        body.light-mode .skeleton { background: linear-gradient(90deg, #e2e8f0 25%, #cbd5e1 50%, #e2e8f0 75%); background-size: 200% 100%; }
+        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+        .skeleton-header { display: flex; gap: 14px; padding: 14px; }
+        .skeleton-img { width: 55px; height: 55px; border-radius: 14px; }
+        .skeleton-text { flex: 1; }
+        .skeleton-text-line { height: 16px; margin: 8px 0; border-radius: 8px; }
+        .skeleton-video { width: 100%; padding-bottom: 56.25%; border-radius: 12px; margin: 0 14px; }
+        .skeleton-price { height: 80px; margin: 12px 14px; border-radius: 12px; }
+        .skeleton-btn { height: 48px; margin: 12px 14px 20px; border-radius: 50px; }
+        
         .toast-msg { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px); background: #1e293b; padding: 12px 24px; border-radius: 50px; z-index: 9999; transition: 0.3s; border-left: 4px solid #f59e0b; opacity: 0; font-size: 13px; }
         .toast-msg.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+        body.light-mode .toast-msg { background: #fff; color: #1e293b; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        
         .container { max-width: 650px; margin: 0 auto; padding: 20px 16px 40px; }
+        
+        /* Pull to Refresh Indicator */
+        .ptr-container { position: fixed; top: 0; left: 0; right: 0; height: 60px; z-index: 9998; display: flex; justify-content: center; align-items: center; transform: translateY(-100%); transition: transform 0.2s; }
+        .ptr-container.active { transform: translateY(0); }
+        .ptr-spinner { width: 30px; height: 30px; border: 3px solid rgba(245,158,11,0.2); border-top-color: #f59e0b; border-radius: 50%; animation: spin 1s linear infinite; }
         
         .lang-switch { display: flex; justify-content: flex-end; gap: 10px; margin-bottom: 15px; }
         .lang-btn { background: rgba(51,65,85,0.5); border: none; padding: 8px 18px; border-radius: 50px; color: white; cursor: pointer; font-size: 13px; font-weight: 500; transition: 0.2s; }
         .lang-btn.active { background: linear-gradient(135deg, #f59e0b, #d97706); color: #0f172a; font-weight: bold; }
+        body.light-mode .lang-btn { background: #e2e8f0; color: #1e293b; }
+        body.light-mode .lang-btn.active { background: linear-gradient(135deg, #f59e0b, #d97706); color: white; }
         
         .hero { background: rgba(15,25,45,0.65); backdrop-filter: blur(12px); border-radius: 1.5rem; padding: 1rem; text-align: center; margin-bottom: 20px; border: 1px solid rgba(245,158,11,0.3); }
         .badge { background: rgba(51,65,85,0.5); padding: 6px 14px; border-radius: 50px; font-size: 12px; display: inline-block; margin: 4px; border-left: 3px solid #f59e0b; }
@@ -41,7 +87,6 @@
         .game-img { width: 55px; height: 55px; border-radius: 14px; object-fit: cover; border: 2px solid #f59e0b; }
         .game-name { font-weight: 800; background: linear-gradient(45deg, #ffd966, #f59e0b); -webkit-background-clip: text; background-clip: text; color: transparent; font-size: 18px; }
         
-        /* Video YouTube normal - biar ada logo & channel, yang penting berfungsi */
         .video-container { position: relative; width: 100%; padding-bottom: 56.25%; background: #000; border-radius: 12px; overflow: hidden; }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
         
@@ -76,54 +121,37 @@
         .collab-email-text i { margin-right: 8px; }
         .footer { text-align: center; padding: 20px 0; font-size: 11px; color: #64748b; border-top: 1px solid rgba(245,158,11,0.2); margin-top: 20px; }
         @media (max-width: 550px) { .price-list { flex-direction: column; gap: 8px; } .price-item-card { display: flex; justify-content: space-between; align-items: center; } .price-days { margin-bottom: 0; } }
+        
+        .hide { display: none; }
     </style>
 </head>
 <body>
 
+<!-- Pull to Refresh Indicator -->
+<div id="ptrIndicator" class="ptr-container">
+    <div class="ptr-spinner"></div>
+</div>
+
 <div id="loadingScreen" class="loading-screen"><div class="loader-ring"></div><p>LLC STORE</p></div>
 <div id="toastMsg" class="toast-msg">✅ Message copied!</div>
 
-<div class="bg-master"><div class="nebula-1"></div><div class="nebula-2"></div><div class="nebula-3"></div></div>
-
-<div class="container">
-    <div class="lang-switch">
-        <button class="lang-btn active" id="langID" onclick="setLanguage('id')">🇮🇩 Indonesia</button>
-        <button class="lang-btn" id="langEN" onclick="setLanguage('en')">🇬🇧 English</button>
+<!-- Skeleton Loading -->
+<div id="skeletonLoading" class="container">
+    <div class="skeleton">
+        <div class="skeleton-header"><div class="skeleton-img skeleton"></div><div class="skeleton-text"><div class="skeleton-text-line skeleton" style="width: 60%;"></div><div class="skeleton-text-line skeleton" style="width: 40%;"></div></div></div>
+        <div class="skeleton-video skeleton"></div>
+        <div class="skeleton-price skeleton"></div>
+        <div class="skeleton-btn skeleton"></div>
     </div>
-
-    <div class="hero">
-        <div class="badge-collection">
-            <span class="badge"><i class="fas fa-gem"></i> <span class="hero-text-1">Mod Premium</span></span>
-            <span class="badge"><i class="fas fa-shield-alt"></i> <span class="hero-text-2">Anti Ban</span></span>
-            <span class="badge"><i class="fas fa-clock"></i> <span class="hero-text-3">24/7 Support</span></span>
-            <span class="badge"><i class="fas fa-sync-alt"></i> <span class="hero-text-4">Auto Update</span></span>
-        </div>
+    <div class="skeleton" style="margin-top: 30px;">
+        <div class="skeleton-header"><div class="skeleton-img skeleton"></div><div class="skeleton-text"><div class="skeleton-text-line skeleton" style="width: 60%;"></div><div class="skeleton-text-line skeleton" style="width: 40%;"></div></div></div>
+        <div class="skeleton-video skeleton"></div>
+        <div class="skeleton-price skeleton"></div>
+        <div class="skeleton-btn skeleton"></div>
     </div>
-
-    <div class="online-card">
-        <div class="online-number" id="onlineCount">1,482</div>
-        <div class="online-label" id="onlineLabel">Online Sekarang</div>
-        <div class="peak-time" id="peakTimeInfo" style="font-size: 11px; margin-top: 6px; color: #fbbf24;">⭐ Waktu normal, pelayanan cepat</div>
-    </div>
-
-    <div class="payment-section">
-        <h3 style="color:#fbbf24; margin-bottom:10px;" id="paymentTitle"><i class="fas fa-credit-card"></i> Metode Pembayaran</h3>
-        <div class="payment-methods" id="paymentMethods"></div>
-    </div>
-
-    <div id="gameList" class="game-grid"></div>
-
-    <div class="collab-section">
-        <div class="collab-title" id="collabTitle">🤝 MENERIMA KERJA SAMA</div>
-        <div class="collab-desc" id="collabDesc">Kami membuka peluang kerja sama untuk YouTuber, Streamer, Content Creator, serta para pembuat APK MOD yang ingin berkolaborasi.</div>
-        <div class="collab-desc" id="collabDesc2">💰 Komisi menarik • Akses eksklusif • Support penuh</div>
-        <div class="collab-email-text"><i class="fas fa-envelope"></i> llcstore92@gmail.com</div>
-    </div>
-
-    <a href="https://t.me/llc_store" class="telegram-btn"><i class="fab fa-telegram"></i> <span id="telegramText">Join Telegram Group</span></a>
-
-    <div class="footer" id="footerText">© 2026 LLC STORE | MOD PREMIUM</div>
 </div>
+
+<div id="mainContent" class="container" style="display: none;"></div>
 
 <div id="orderModal" class="modal">
     <div class="modal-content">
@@ -143,7 +171,7 @@
 </div>
 
 <script>
-    // DATA HARGA (USD)
+    // DATA
     const gamePricesUSD = {
         "PUBG Mobile": { Android: [5, 7, 10], iPhone: [7.5, 10.5, 15] },
         "Free Fire": { Android: [4.5, 6.5, 9.5], iPhone: [6.8, 9.8, 14.3] },
@@ -157,7 +185,6 @@
     const paketLabels = { id: ["14 Hari", "30 Hari", "60 Hari"], en: ["14 Days", "30 Days", "60 Days"] };
     const paymentMethodsList = ["PayPal", "QRIS", "Crypto"];
     
-    // Video YouTube - NORMAL (biar ada logo & channel, yang penting bisa diputar)
     const games = [
         { name: "PUBG Mobile", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ1L1oeq0O83iQLxZPgGa0667Ppae27slZsdj_orTTxQ&s=10", desc: { id: "ESP, Aimbot, No Recoil", en: "ESP, Aimbot, No Recoil" }, videoId: "lc4E-XD3F6M" },
         { name: "Free Fire", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRIanj8jNJDFOzMixdsXW9ES6L3k2h-hvvAHu1eIFtuw&s", desc: { id: "Diamond Hack, Wallhack", en: "Diamond Hack, Wallhack" }, videoId: "reB_BvR4jHc" },
@@ -169,6 +196,28 @@
     ];
 
     let currentLang = "id";
+    let isLoading = false;
+    let touchStartY = 0;
+
+    // Dark/Light Mode from localStorage
+    let isDarkMode = localStorage.getItem('llc_darkmode') !== 'false';
+    
+    function applyTheme() {
+        if (isDarkMode) {
+            document.body.classList.remove('light-mode');
+            document.getElementById('darkModeBtn').innerHTML = '<i class="fas fa-moon"></i>';
+        } else {
+            document.body.classList.add('light-mode');
+            document.getElementById('darkModeBtn').innerHTML = '<i class="fas fa-sun"></i>';
+        }
+    }
+    
+    function toggleTheme() {
+        isDarkMode = !isDarkMode;
+        localStorage.setItem('llc_darkmode', isDarkMode);
+        applyTheme();
+        showToast(isDarkMode ? "Mode Gelap" : "Mode Terang");
+    }
 
     const texts = {
         id: {
@@ -193,53 +242,12 @@
         }
     };
 
-    function applyLanguage() {
-        const t = texts[currentLang];
-        document.getElementById("onlineLabel").innerHTML = t.onlineLabel;
-        document.getElementById("paymentTitle").innerHTML = `<i class="fas fa-credit-card"></i> ${t.paymentTitle}`;
-        document.getElementById("telegramText").innerHTML = t.telegramText;
-        document.getElementById("footerText").innerHTML = t.footerText;
-        document.getElementById("modalTitle").innerHTML = `<i class="fas fa-cart-shopping"></i> ${t.modalTitle}`;
-        document.getElementById("labelGame").innerHTML = t.labelGame;
-        document.getElementById("labelPlatform").innerHTML = t.labelPlatform;
-        document.getElementById("labelPaket").innerHTML = t.labelPaket;
-        document.getElementById("labelPayment").innerHTML = t.labelPayment;
-        document.getElementById("copyText").innerHTML = t.copyText;
-        document.getElementById("sendText").innerHTML = t.sendText;
-        document.getElementById("infoText").innerHTML = t.infoText;
-        document.getElementById("collabTitle").innerHTML = t.collabTitle;
-        document.getElementById("collabDesc").innerHTML = t.collabDesc;
-        document.getElementById("collabDesc2").innerHTML = t.collabDesc2;
-        document.querySelectorAll(".hero-text-1").forEach(el => el.innerHTML = t.hero1);
-        document.querySelectorAll(".hero-text-2").forEach(el => el.innerHTML = t.hero2);
-        document.querySelectorAll(".hero-text-3").forEach(el => el.innerHTML = t.hero3);
-        document.querySelectorAll(".hero-text-4").forEach(el => el.innerHTML = t.hero4);
-        document.getElementById("langID").classList.toggle("active", currentLang === "id");
-        document.getElementById("langEN").classList.toggle("active", currentLang === "en");
-        renderGameList();
-        renderPaymentMethods();
-        updatePeakTimeText();
-    }
+    function showToast(msg) { let t = document.getElementById('toastMsg'); t.innerHTML = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2000); }
 
-    function setLanguage(lang) { currentLang = lang; applyLanguage(); }
-
-    function renderPaymentMethods() {
-        const container = document.getElementById("paymentMethods");
-        if (!container) return;
-        container.innerHTML = paymentMethodsList.map(m => `<div class="payment-chip"><i class="fas fa-check-circle"></i> ${m}</div>`).join('');
-        const metodeSelect = document.getElementById("modalPaymentMethod");
-        if (metodeSelect) {
-            metodeSelect.innerHTML = '<option value="">-- ' + (currentLang === "id" ? "Pilih Metode" : "Select Method") + ' --</option>' + 
-                paymentMethodsList.map(m => `<option value="${m}">${m}</option>`).join('');
-        }
-    }
-
-    function getYouTubeEmbedUrl(videoId) {
-        return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=0&modestbranding=1&rel=0`;
-    }
+    function getYouTubeEmbedUrl(videoId) { return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=0&modestbranding=1&rel=0`; }
 
     function renderGameList() {
-        const container = document.getElementById("gameList");
+        const container = document.getElementById("mainContent");
         if (!container) return;
         
         container.innerHTML = games.map((game, index) => {
@@ -277,9 +285,79 @@
         }).join('');
     }
 
-    // MODAL ORDER FUNCTIONS
+    function renderPaymentMethods() {
+        const container = document.getElementById("paymentMethods");
+        if (!container) return;
+        container.innerHTML = paymentMethodsList.map(m => `<div class="payment-chip"><i class="fas fa-check-circle"></i> ${m}</div>`).join('');
+        const metodeSelect = document.getElementById("modalPaymentMethod");
+        if (metodeSelect) {
+            metodeSelect.innerHTML = '<option value="">-- ' + (currentLang === "id" ? "Pilih Metode" : "Select Method") + ' --</option>' + 
+                paymentMethodsList.map(m => `<option value="${m}">${m}</option>`).join('');
+        }
+    }
+
+    function applyLanguage() {
+        const t = texts[currentLang];
+        document.getElementById("onlineLabel").innerHTML = t.onlineLabel;
+        document.getElementById("paymentTitle").innerHTML = `<i class="fas fa-credit-card"></i> ${t.paymentTitle}`;
+        document.getElementById("telegramText").innerHTML = t.telegramText;
+        document.getElementById("footerText").innerHTML = t.footerText;
+        document.getElementById("modalTitle").innerHTML = `<i class="fas fa-cart-shopping"></i> ${t.modalTitle}`;
+        document.getElementById("labelGame").innerHTML = t.labelGame;
+        document.getElementById("labelPlatform").innerHTML = t.labelPlatform;
+        document.getElementById("labelPaket").innerHTML = t.labelPaket;
+        document.getElementById("labelPayment").innerHTML = t.labelPayment;
+        document.getElementById("copyText").innerHTML = t.copyText;
+        document.getElementById("sendText").innerHTML = t.sendText;
+        document.getElementById("infoText").innerHTML = t.infoText;
+        document.getElementById("collabTitle").innerHTML = t.collabTitle;
+        document.getElementById("collabDesc").innerHTML = t.collabDesc;
+        document.getElementById("collabDesc2").innerHTML = t.collabDesc2;
+        document.querySelectorAll(".hero-text-1").forEach(el => el.innerHTML = t.hero1);
+        document.querySelectorAll(".hero-text-2").forEach(el => el.innerHTML = t.hero2);
+        document.querySelectorAll(".hero-text-3").forEach(el => el.innerHTML = t.hero3);
+        document.querySelectorAll(".hero-text-4").forEach(el => el.innerHTML = t.hero4);
+        document.getElementById("langID").classList.toggle("active", currentLang === "id");
+        document.getElementById("langEN").classList.toggle("active", currentLang === "en");
+        renderGameList();
+        renderPaymentMethods();
+        updatePeakTimeText();
+    }
+
+    function setLanguage(lang) { currentLang = lang; applyLanguage(); }
+
+    // Pull to Refresh
+    function initPullToRefresh() {
+        const ptrIndicator = document.getElementById('ptrIndicator');
+        let startY = 0;
+        let refreshing = false;
+        
+        document.body.addEventListener('touchstart', (e) => {
+            if (window.scrollY === 0) {
+                startY = e.touches[0].clientY;
+            }
+        });
+        
+        document.body.addEventListener('touchmove', (e) => {
+            if (refreshing) return;
+            if (window.scrollY === 0 && e.touches[0].clientY - startY > 60) {
+                e.preventDefault();
+                ptrIndicator.classList.add('active');
+            }
+        });
+        
+        document.body.addEventListener('touchend', () => {
+            if (ptrIndicator.classList.contains('active')) {
+                refreshing = true;
+                setTimeout(() => {
+                    location.reload();
+                }, 500);
+            }
+        });
+    }
+
+    // MODAL FUNCTIONS
     let currentGameName = "";
-    
     function openOrderModal(gameName) {
         currentGameName = gameName;
         document.getElementById("modalGame").value = gameName;
@@ -287,7 +365,6 @@
         document.getElementById("orderModal").style.display = "flex";
         updatePreview();
     }
-    
     function closeModal() { document.getElementById("orderModal").style.display = "none"; }
     
     function updatePaketOptions() {
@@ -345,11 +422,8 @@
         }
     }
     
-    function showToast(msg) { let t = document.getElementById('toastMsg'); t.innerHTML = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2000); }
-    
-    // ONLINE COUNT DINAMIS
+    // ONLINE COUNT
     let currentOnline = 1482, targetOnline = 1482;
-    
     function getOnlineByHour() {
         const hour = new Date().getHours();
         if (hour >= 19 && hour <= 22) return Math.floor(Math.random() * (20068 - 10000 + 1) + 10000);
@@ -393,17 +467,54 @@
     document.getElementById("sendOrderBtn")?.addEventListener("click", sendMessage);
     window.onclick = e => { if (e.target === document.getElementById("orderModal")) closeModal(); };
     
+    // ADD TOP BAR BUTTONS
+    function addTopBar() {
+        const topBar = document.querySelector('.top-bar-premium');
+        if (topBar) {
+            const darkBtn = document.createElement('button');
+            darkBtn.id = 'darkModeBtn';
+            darkBtn.className = 'dark-toggle';
+            darkBtn.innerHTML = '<i class="fas fa-moon"></i>';
+            darkBtn.onclick = toggleTheme;
+            topBar.appendChild(darkBtn);
+        }
+    }
+    
     // INIT
     function init() {
-        renderGameList();
-        renderPaymentMethods();
+        // Show skeleton, hide main
+        document.getElementById('skeletonLoading').style.display = 'block';
+        document.getElementById('mainContent').style.display = 'none';
+        
+        // Simulate loading delay
+        setTimeout(() => {
+            renderGameList();
+            renderPaymentMethods();
+            applyLanguage();
+            
+            // Hide skeleton, show main
+            document.getElementById('skeletonLoading').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+            
+            // Apply theme from localStorage
+            applyTheme();
+            
+            // Hide loading screen
+            const loader = document.getElementById('loadingScreen');
+            if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => loader.style.display = 'none', 500);
+            }
+        }, 800);
+        
         currentOnline = getOnlineByHour();
         targetOnline = currentOnline;
-        document.getElementById("onlineCount").innerHTML = currentOnline.toLocaleString();
+        document.getElementById('onlineCount').innerHTML = currentOnline.toLocaleString();
         updateOnlineCount();
-        setTimeout(() => { const loader = document.getElementById("loadingScreen"); if (loader) { loader.style.opacity = "0"; setTimeout(() => loader.style.display = "none", 500); } }, 1000);
-        applyLanguage();
+        addTopBar();
+        initPullToRefresh();
     }
+    
     init();
 </script>
 </body>
