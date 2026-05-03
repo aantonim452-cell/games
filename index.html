@@ -67,7 +67,7 @@
         .loader-text { font-size: 14px; color: #fbbf24; letter-spacing: 2px; }
         @keyframes spin { to { transform: rotate(360deg); } }
         
-        /* Skeleton Loading - Model Baru (Card Style) */
+        /* Skeleton Loading - Card Style */
         .skeleton-wrapper { display: flex; flex-direction: column; gap: 30px; }
         .skeleton-card { background: linear-gradient(145deg, #1e293b, #0f172a); border-radius: 1.5rem; overflow: hidden; padding: 16px; }
         body.light-mode .skeleton-card { background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
@@ -90,11 +90,6 @@
         
         .toast-msg { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px); background: #1e293b; padding: 12px 24px; border-radius: 50px; z-index: 9999; transition: 0.3s; border-left: 4px solid #f59e0b; opacity: 0; font-size: 13px; }
         .toast-msg.show { transform: translateX(-50%) translateY(0); opacity: 1; }
-        
-        /* Pull to Refresh */
-        .ptr-container { position: fixed; top: 0; left: 0; right: 0; height: 60px; z-index: 9998; display: flex; justify-content: center; align-items: center; transform: translateY(-100%); transition: transform 0.2s; }
-        .ptr-container.active { transform: translateY(0); }
-        .ptr-spinner { width: 30px; height: 30px; border: 3px solid rgba(245,158,11,0.2); border-top-color: #f59e0b; border-radius: 50%; animation: spin 1s linear infinite; }
         
         .container { max-width: 650px; margin: 0 auto; padding: 20px 16px 40px; }
         
@@ -160,13 +155,10 @@
 </head>
 <body class="dark-mode">
 
-<!-- Pull to Refresh Indicator -->
-<div id="ptrIndicator" class="ptr-container"><div class="ptr-spinner"></div></div>
-
 <div id="loadingScreen" class="loading-screen"><div class="loader"></div><div class="loader-text">LLC STORE</div></div>
 <div id="toastMsg" class="toast-msg">✅ Message copied!</div>
 
-<!-- Skeleton Loading - Model Baru -->
+<!-- Skeleton Loading -->
 <div id="skeletonLoading" class="container">
     <div class="top-bar-premium"><div style="width:42px"></div><div class="lang-switch"><button class="lang-btn">🇮🇩</button><button class="lang-btn">🇬🇧</button></div><div style="width:42px"></div></div>
     <div class="skeleton-wrapper">
@@ -410,34 +402,6 @@
 
     function setLanguage(lang) { currentLang = lang; applyLanguage(); }
 
-    // Pull to Refresh
-    function initPullToRefresh() {
-        const ptrIndicator = document.getElementById('ptrIndicator');
-        let startY = 0;
-        let refreshing = false;
-        
-        document.body.addEventListener('touchstart', (e) => {
-            if (window.scrollY === 0) {
-                startY = e.touches[0].clientY;
-            }
-        });
-        
-        document.body.addEventListener('touchmove', (e) => {
-            if (refreshing) return;
-            if (window.scrollY === 0 && e.touches[0].clientY - startY > 60) {
-                e.preventDefault();
-                ptrIndicator.classList.add('active');
-            }
-        });
-        
-        document.body.addEventListener('touchend', () => {
-            if (ptrIndicator.classList.contains('active')) {
-                refreshing = true;
-                setTimeout(() => { location.reload(); }, 500);
-            }
-        });
-    }
-
     // MODAL FUNCTIONS
     let currentGameName = "";
     function openOrderModal(gameName) {
@@ -577,7 +541,6 @@
         targetOnline = currentOnline;
         document.getElementById('onlineCount').innerHTML = currentOnline.toLocaleString();
         updateOnlineCount();
-        initPullToRefresh();
     }
     
     init();
