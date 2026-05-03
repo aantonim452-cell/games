@@ -10,7 +10,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Inter', sans-serif; background: #0a0a1a; color: #fff; min-height: 100vh; transition: background 0.3s, color 0.3s; }
         
-        /* Dark/Light Mode Variables */
+        /* Dark/Light Mode */
         body.light-mode { background: #f0f2f5; color: #1e293b; }
         body.light-mode .bg-master .nebula-1,
         body.light-mode .bg-master .nebula-2,
@@ -29,6 +29,9 @@
         body.light-mode .payment-chip { background: #e2e8f0; color: #1e293b; }
         body.light-mode .price-item-card { background: #f1f5f9; }
         body.light-mode .collab-email-text { background: rgba(245,158,11,0.1); color: #f59e0b; }
+        body.light-mode .top-bar-premium { background: rgba(255,255,255,0.9); border-color: #e2e8f0; }
+        body.light-mode .lang-btn { background: #e2e8f0; color: #1e293b; }
+        body.light-mode .lang-btn.active { background: linear-gradient(135deg, #f59e0b, #d97706); color: white; }
         
         .bg-master { position: fixed; inset: 0; z-index: -10; overflow: hidden; }
         .nebula-1, .nebula-2, .nebula-3 { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3; animation: float 20s infinite; }
@@ -37,8 +40,8 @@
         .nebula-3 { width: 400px; height: 400px; background: #f59e0b; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-delay: -10s; }
         @keyframes float { 0%,100% { transform: translate(0,0); } 50% { transform: translate(20px,-20px); } }
         
-        /* Loading Screen - Skeleton */
-        .loading-screen { position: fixed; inset: 0; background: #0a0a1a; z-index: 10000; display: flex; justify-content: center; align-items: center; transition: opacity 0.8s; }
+        /* Loading Screen */
+        .loading-screen { position: fixed; inset: 0; background: #0a0a1a; z-index: 10000; display: flex; justify-content: center; align-items: center; transition: opacity 0.5s; }
         body.light-mode .loading-screen { background: #f0f2f5; }
         .loader-ring { width: 60px; height: 60px; border: 3px solid rgba(245,158,11,0.2); border-top: 3px solid #f59e0b; border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 15px; }
         @keyframes spin { to { transform: rotate(360deg); } }
@@ -51,26 +54,28 @@
         .skeleton-img { width: 55px; height: 55px; border-radius: 14px; }
         .skeleton-text { flex: 1; }
         .skeleton-text-line { height: 16px; margin: 8px 0; border-radius: 8px; }
-        .skeleton-video { width: 100%; padding-bottom: 56.25%; border-radius: 12px; margin: 0 14px; }
+        .skeleton-video { width: calc(100% - 28px); margin: 0 14px; padding-bottom: 56.25%; border-radius: 12px; }
         .skeleton-price { height: 80px; margin: 12px 14px; border-radius: 12px; }
         .skeleton-btn { height: 48px; margin: 12px 14px 20px; border-radius: 50px; }
+        .hide { display: none; }
         
         .toast-msg { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px); background: #1e293b; padding: 12px 24px; border-radius: 50px; z-index: 9999; transition: 0.3s; border-left: 4px solid #f59e0b; opacity: 0; font-size: 13px; }
         .toast-msg.show { transform: translateX(-50%) translateY(0); opacity: 1; }
         body.light-mode .toast-msg { background: #fff; color: #1e293b; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
         
-        .container { max-width: 650px; margin: 0 auto; padding: 20px 16px 40px; }
-        
-        /* Pull to Refresh Indicator */
+        /* Pull to Refresh */
         .ptr-container { position: fixed; top: 0; left: 0; right: 0; height: 60px; z-index: 9998; display: flex; justify-content: center; align-items: center; transform: translateY(-100%); transition: transform 0.2s; }
         .ptr-container.active { transform: translateY(0); }
         .ptr-spinner { width: 30px; height: 30px; border: 3px solid rgba(245,158,11,0.2); border-top-color: #f59e0b; border-radius: 50%; animation: spin 1s linear infinite; }
         
-        .lang-switch { display: flex; justify-content: flex-end; gap: 10px; margin-bottom: 15px; }
+        .container { max-width: 650px; margin: 0 auto; padding: 20px 16px 40px; }
+        
+        .top-bar-premium { display: flex; justify-content: space-between; align-items: center; padding: 12px 22px; background: rgba(15,25,45,0.5); backdrop-filter: blur(12px); border-radius: 50px; margin-bottom: 25px; border: 1px solid rgba(245,158,11,0.2); }
+        .lang-switch { display: flex; justify-content: flex-end; gap: 10px; }
         .lang-btn { background: rgba(51,65,85,0.5); border: none; padding: 8px 18px; border-radius: 50px; color: white; cursor: pointer; font-size: 13px; font-weight: 500; transition: 0.2s; }
         .lang-btn.active { background: linear-gradient(135deg, #f59e0b, #d97706); color: #0f172a; font-weight: bold; }
-        body.light-mode .lang-btn { background: #e2e8f0; color: #1e293b; }
-        body.light-mode .lang-btn.active { background: linear-gradient(135deg, #f59e0b, #d97706); color: white; }
+        .menu-btn, .dark-toggle { background: rgba(255,255,255,0.08); border: none; width: 42px; height: 42px; border-radius: 50%; color: #fbbf24; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; }
+        .dark-toggle:active { transform: scale(0.92); }
         
         .hero { background: rgba(15,25,45,0.65); backdrop-filter: blur(12px); border-radius: 1.5rem; padding: 1rem; text-align: center; margin-bottom: 20px; border: 1px solid rgba(245,158,11,0.3); }
         .badge { background: rgba(51,65,85,0.5); padding: 6px 14px; border-radius: 50px; font-size: 12px; display: inline-block; margin: 4px; border-left: 3px solid #f59e0b; }
@@ -121,37 +126,70 @@
         .collab-email-text i { margin-right: 8px; }
         .footer { text-align: center; padding: 20px 0; font-size: 11px; color: #64748b; border-top: 1px solid rgba(245,158,11,0.2); margin-top: 20px; }
         @media (max-width: 550px) { .price-list { flex-direction: column; gap: 8px; } .price-item-card { display: flex; justify-content: space-between; align-items: center; } .price-days { margin-bottom: 0; } }
-        
-        .hide { display: none; }
     </style>
 </head>
 <body>
 
 <!-- Pull to Refresh Indicator -->
-<div id="ptrIndicator" class="ptr-container">
-    <div class="ptr-spinner"></div>
-</div>
+<div id="ptrIndicator" class="ptr-container"><div class="ptr-spinner"></div></div>
 
 <div id="loadingScreen" class="loading-screen"><div class="loader-ring"></div><p>LLC STORE</p></div>
 <div id="toastMsg" class="toast-msg">✅ Message copied!</div>
 
 <!-- Skeleton Loading -->
 <div id="skeletonLoading" class="container">
-    <div class="skeleton">
-        <div class="skeleton-header"><div class="skeleton-img skeleton"></div><div class="skeleton-text"><div class="skeleton-text-line skeleton" style="width: 60%;"></div><div class="skeleton-text-line skeleton" style="width: 40%;"></div></div></div>
-        <div class="skeleton-video skeleton"></div>
-        <div class="skeleton-price skeleton"></div>
-        <div class="skeleton-btn skeleton"></div>
-    </div>
-    <div class="skeleton" style="margin-top: 30px;">
-        <div class="skeleton-header"><div class="skeleton-img skeleton"></div><div class="skeleton-text"><div class="skeleton-text-line skeleton" style="width: 60%;"></div><div class="skeleton-text-line skeleton" style="width: 40%;"></div></div></div>
-        <div class="skeleton-video skeleton"></div>
-        <div class="skeleton-price skeleton"></div>
-        <div class="skeleton-btn skeleton"></div>
-    </div>
+    <div class="top-bar-premium"><div style="width:42px"></div><div class="lang-switch"><button class="lang-btn">🇮🇩</button><button class="lang-btn">🇬🇧</button></div><div style="width:42px"></div></div>
+    <div class="skeleton" style="height:100px; margin-bottom:20px;"></div>
+    <div class="skeleton" style="height:80px; margin-bottom:20px;"></div>
+    <div class="skeleton" style="height:60px; margin-bottom:20px;"></div>
+    <div class="game-card-skeleton"><div class="skeleton-header"><div class="skeleton-img skeleton"></div><div class="skeleton-text"><div class="skeleton-text-line skeleton" style="width: 60%;"></div><div class="skeleton-text-line skeleton" style="width: 40%;"></div></div></div><div class="skeleton-video skeleton"></div><div class="skeleton-price skeleton"></div><div class="skeleton-btn skeleton"></div></div>
+    <div class="game-card-skeleton" style="margin-top:30px;"><div class="skeleton-header"><div class="skeleton-img skeleton"></div><div class="skeleton-text"><div class="skeleton-text-line skeleton" style="width: 60%;"></div><div class="skeleton-text-line skeleton" style="width: 40%;"></div></div></div><div class="skeleton-video skeleton"></div><div class="skeleton-price skeleton"></div><div class="skeleton-btn skeleton"></div></div>
 </div>
 
-<div id="mainContent" class="container" style="display: none;"></div>
+<!-- Main Content -->
+<div id="mainContent" class="container" style="display: none;">
+    <div class="top-bar-premium">
+        <div style="width:42px"></div>
+        <div class="lang-switch">
+            <button class="lang-btn active" id="langID">🇮🇩 Indonesia</button>
+            <button class="lang-btn" id="langEN">🇬🇧 English</button>
+        </div>
+        <button id="darkModeBtn" class="dark-toggle"><i class="fas fa-moon"></i></button>
+    </div>
+
+    <div class="hero">
+        <div class="badge-collection">
+            <span class="badge"><i class="fas fa-gem"></i> <span class="hero-text-1">Mod Premium</span></span>
+            <span class="badge"><i class="fas fa-shield-alt"></i> <span class="hero-text-2">Anti Ban</span></span>
+            <span class="badge"><i class="fas fa-clock"></i> <span class="hero-text-3">24/7 Support</span></span>
+            <span class="badge"><i class="fas fa-sync-alt"></i> <span class="hero-text-4">Auto Update</span></span>
+        </div>
+    </div>
+
+    <div class="online-card">
+        <div class="online-number" id="onlineCount">1,482</div>
+        <div class="online-label" id="onlineLabel">Online Sekarang</div>
+        <div class="peak-time" id="peakTimeInfo">⭐ Waktu normal, pelayanan cepat</div>
+    </div>
+
+    <div class="payment-section">
+        <h3 style="color:#fbbf24; margin-bottom:10px;" id="paymentTitle"><i class="fas fa-credit-card"></i> Metode Pembayaran</h3>
+        <div class="payment-methods" id="paymentMethods"></div>
+    </div>
+
+    <div id="gameList" class="game-grid"></div>
+
+    <div class="collab-section">
+        <div class="collab-title" id="collabTitle">🤝 MENERIMA KERJA SAMA</div>
+        <div class="collab-desc" id="collabDesc">Kami membuka peluang kerja sama untuk YouTuber, Streamer, Content Creator, serta para pembuat APK MOD yang ingin berkolaborasi.</div>
+        <div class="collab-desc" id="collabDesc2">💰 Komisi menarik • Akses eksklusif • Support penuh</div>
+        <div class="collab-email-text"><i class="fas fa-envelope"></i> llcstore92@gmail.com</div>
+    </div>
+
+    <a href="https://t.me/llc_store" class="telegram-btn" id="telegramBtn"><i class="fab fa-telegram"></i> <span id="telegramText">Join Telegram Group</span></a>
+
+    <div class="footer" id="footerText">© 2026 LLC STORE | MOD PREMIUM</div>
+</div>
 
 <div id="orderModal" class="modal">
     <div class="modal-content">
@@ -196,19 +234,18 @@
     ];
 
     let currentLang = "id";
-    let isLoading = false;
-    let touchStartY = 0;
-
-    // Dark/Light Mode from localStorage
     let isDarkMode = localStorage.getItem('llc_darkmode') !== 'false';
-    
+
+    // Apply theme
     function applyTheme() {
         if (isDarkMode) {
             document.body.classList.remove('light-mode');
-            document.getElementById('darkModeBtn').innerHTML = '<i class="fas fa-moon"></i>';
+            const darkBtn = document.getElementById('darkModeBtn');
+            if (darkBtn) darkBtn.innerHTML = '<i class="fas fa-moon"></i>';
         } else {
             document.body.classList.add('light-mode');
-            document.getElementById('darkModeBtn').innerHTML = '<i class="fas fa-sun"></i>';
+            const darkBtn = document.getElementById('darkModeBtn');
+            if (darkBtn) darkBtn.innerHTML = '<i class="fas fa-sun"></i>';
         }
     }
     
@@ -219,38 +256,22 @@
         showToast(isDarkMode ? "Mode Gelap" : "Mode Terang");
     }
 
-    const texts = {
-        id: {
-            onlineLabel: "Online Sekarang", peakNormal: "⭐ Waktu normal, pelayanan cepat", peakBusy: "🔥 Jam sibuk! 🔥 Antrean padat", peakQuiet: "🌙 Sepi, chat admin tetap aktif", peakMorning: "☀️ Pagi hari, mulai ramai",
-            paymentTitle: "Metode Pembayaran", telegramText: "Join Telegram Group", footerText: "© 2026 LLC STORE | MOD PREMIUM",
-            modalTitle: "Form Order MOD", labelGame: "Game", labelPlatform: "Platform", labelPaket: "Paket", labelPayment: "Metode Pembayaran",
-            copyText: "Salin Pesanan", sendText: "Kirim ke Chat APK", infoText: "Pesanan akan disalin, buka chat APK dan paste",
-            toastCopied: "✅ Pesanan disalin! Buka Chat APK dan paste.", toastSent: "✅ Membuka Chat APK...",
-            hero1: "Mod Premium", hero2: "Anti Ban", hero3: "24/7 Support", hero4: "Auto Update",
-            collabTitle: "🤝 MENERIMA KERJA SAMA", collabDesc: "Kami membuka peluang kerja sama untuk YouTuber, Streamer, Content Creator, serta para pembuat APK MOD yang ingin berkolaborasi.", collabDesc2: "💰 Komisi menarik • Akses eksklusif • Support penuh",
-            previewTemplate: (g, plat, paket, price, method) => `📋 ORDER MOD LLC STORE\n━━━━━━━━━━━━━━━━━━━━\n🎮 Game: ${g}\n📱 Platform: ${plat}\n📦 Paket: ${paket}\n💰 Harga: $${price}\n💳 Metode: ${method}\n━━━━━━━━━━━━━━━━━━━━\n⏰ Mohon diproses, terima kasih.`
-        },
-        en: {
-            onlineLabel: "Online Now", peakNormal: "⭐ Normal hours, fast service", peakBusy: "🔥 Peak hours! 🔥 Busy queue", peakQuiet: "🌙 Quiet time, admin still active", peakMorning: "☀️ Morning, starting to get busy",
-            paymentTitle: "Payment Methods", telegramText: "Join Telegram Group", footerText: "© 2026 LLC STORE | MOD PREMIUM",
-            modalTitle: "Order MOD Form", labelGame: "Game", labelPlatform: "Platform", labelPaket: "Package", labelPayment: "Payment Method",
-            copyText: "Copy Order", sendText: "Send to Chat APK", infoText: "Order will be copied, open chat APK and paste",
-            toastCopied: "✅ Order copied! Open Chat APK and paste.", toastSent: "✅ Opening Chat APK...",
-            hero1: "Mod Premium", hero2: "Anti Ban", hero3: "24/7 Support", hero4: "Auto Update",
-            collabTitle: "🤝 COLLABORATION WELCOME", collabDesc: "We are open for collaboration with YouTubers, Streamers, Content Creators, and MOD APK developers.", collabDesc2: "💰 Attractive commission • Exclusive access • Full support",
-            previewTemplate: (g, plat, paket, price, method) => `📋 ORDER MOD LLC STORE\n━━━━━━━━━━━━━━━━━━━━\n🎮 Game: ${g}\n📱 Platform: ${plat}\n📦 Package: ${paket}\n💰 Price: $${price}\n💳 Method: ${method}\n━━━━━━━━━━━━━━━━━━━━\n⏰ Please process, thank you.`
-        }
-    };
+    function showToast(msg) { 
+        let t = document.getElementById('toastMsg'); 
+        t.innerHTML = msg; 
+        t.classList.add('show'); 
+        setTimeout(() => t.classList.remove('show'), 2000); 
+    }
 
-    function showToast(msg) { let t = document.getElementById('toastMsg'); t.innerHTML = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2000); }
-
-    function getYouTubeEmbedUrl(videoId) { return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=0&modestbranding=1&rel=0`; }
+    function getYouTubeEmbedUrl(videoId) { 
+        return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=0&modestbranding=1&rel=0`; 
+    }
 
     function renderGameList() {
-        const container = document.getElementById("mainContent");
+        const container = document.getElementById("gameList");
         if (!container) return;
         
-        container.innerHTML = games.map((game, index) => {
+        container.innerHTML = games.map(game => {
             const prices = gamePricesUSD[game.name];
             return `
                 <div class="game-card">
@@ -295,6 +316,29 @@
                 paymentMethodsList.map(m => `<option value="${m}">${m}</option>`).join('');
         }
     }
+
+    const texts = {
+        id: {
+            onlineLabel: "Online Sekarang", peakNormal: "⭐ Waktu normal, pelayanan cepat", peakBusy: "🔥 Jam sibuk! 🔥 Antrean padat", peakQuiet: "🌙 Sepi, chat admin tetap aktif", peakMorning: "☀️ Pagi hari, mulai ramai",
+            paymentTitle: "Metode Pembayaran", telegramText: "Join Telegram Group", footerText: "© 2026 LLC STORE | MOD PREMIUM",
+            modalTitle: "Form Order MOD", labelGame: "Game", labelPlatform: "Platform", labelPaket: "Paket", labelPayment: "Metode Pembayaran",
+            copyText: "Salin Pesanan", sendText: "Kirim ke Chat APK", infoText: "Pesanan akan disalin, buka chat APK dan paste",
+            toastCopied: "✅ Pesanan disalin! Buka Chat APK dan paste.", toastSent: "✅ Membuka Chat APK...",
+            hero1: "Mod Premium", hero2: "Anti Ban", hero3: "24/7 Support", hero4: "Auto Update",
+            collabTitle: "🤝 MENERIMA KERJA SAMA", collabDesc: "Kami membuka peluang kerja sama untuk YouTuber, Streamer, Content Creator, serta para pembuat APK MOD yang ingin berkolaborasi.", collabDesc2: "💰 Komisi menarik • Akses eksklusif • Support penuh",
+            previewTemplate: (g, plat, paket, price, method) => `📋 ORDER MOD LLC STORE\n━━━━━━━━━━━━━━━━━━━━\n🎮 Game: ${g}\n📱 Platform: ${plat}\n📦 Paket: ${paket}\n💰 Harga: $${price}\n💳 Metode: ${method}\n━━━━━━━━━━━━━━━━━━━━\n⏰ Mohon diproses, terima kasih.`
+        },
+        en: {
+            onlineLabel: "Online Now", peakNormal: "⭐ Normal hours, fast service", peakBusy: "🔥 Peak hours! 🔥 Busy queue", peakQuiet: "🌙 Quiet time, admin still active", peakMorning: "☀️ Morning, starting to get busy",
+            paymentTitle: "Payment Methods", telegramText: "Join Telegram Group", footerText: "© 2026 LLC STORE | MOD PREMIUM",
+            modalTitle: "Order MOD Form", labelGame: "Game", labelPlatform: "Platform", labelPaket: "Package", labelPayment: "Payment Method",
+            copyText: "Copy Order", sendText: "Send to Chat APK", infoText: "Order will be copied, open chat APK and paste",
+            toastCopied: "✅ Order copied! Open Chat APK and paste.", toastSent: "✅ Opening Chat APK...",
+            hero1: "Mod Premium", hero2: "Anti Ban", hero3: "24/7 Support", hero4: "Auto Update",
+            collabTitle: "🤝 COLLABORATION WELCOME", collabDesc: "We are open for collaboration with YouTubers, Streamers, Content Creators, and MOD APK developers.", collabDesc2: "💰 Attractive commission • Exclusive access • Full support",
+            previewTemplate: (g, plat, paket, price, method) => `📋 ORDER MOD LLC STORE\n━━━━━━━━━━━━━━━━━━━━\n🎮 Game: ${g}\n📱 Platform: ${plat}\n📦 Package: ${paket}\n💰 Price: $${price}\n💳 Method: ${method}\n━━━━━━━━━━━━━━━━━━━━\n⏰ Please process, thank you.`
+        }
+    };
 
     function applyLanguage() {
         const t = texts[currentLang];
@@ -349,9 +393,7 @@
         document.body.addEventListener('touchend', () => {
             if (ptrIndicator.classList.contains('active')) {
                 refreshing = true;
-                setTimeout(() => {
-                    location.reload();
-                }, 500);
+                setTimeout(() => { location.reload(); }, 500);
             }
         });
     }
@@ -465,20 +507,10 @@
     document.getElementById("modalPaymentMethod")?.addEventListener("change", updatePreview);
     document.getElementById("copyOrderBtn")?.addEventListener("click", copyMessage);
     document.getElementById("sendOrderBtn")?.addEventListener("click", sendMessage);
+    document.getElementById("darkModeBtn")?.addEventListener("click", toggleTheme);
+    document.getElementById("langID")?.addEventListener("click", () => setLanguage("id"));
+    document.getElementById("langEN")?.addEventListener("click", () => setLanguage("en"));
     window.onclick = e => { if (e.target === document.getElementById("orderModal")) closeModal(); };
-    
-    // ADD TOP BAR BUTTONS
-    function addTopBar() {
-        const topBar = document.querySelector('.top-bar-premium');
-        if (topBar) {
-            const darkBtn = document.createElement('button');
-            darkBtn.id = 'darkModeBtn';
-            darkBtn.className = 'dark-toggle';
-            darkBtn.innerHTML = '<i class="fas fa-moon"></i>';
-            darkBtn.onclick = toggleTheme;
-            topBar.appendChild(darkBtn);
-        }
-    }
     
     // INIT
     function init() {
@@ -491,13 +523,11 @@
             renderGameList();
             renderPaymentMethods();
             applyLanguage();
+            applyTheme();
             
             // Hide skeleton, show main
             document.getElementById('skeletonLoading').style.display = 'none';
             document.getElementById('mainContent').style.display = 'block';
-            
-            // Apply theme from localStorage
-            applyTheme();
             
             // Hide loading screen
             const loader = document.getElementById('loadingScreen');
@@ -505,13 +535,12 @@
                 loader.style.opacity = '0';
                 setTimeout(() => loader.style.display = 'none', 500);
             }
-        }, 800);
+        }, 1000);
         
         currentOnline = getOnlineByHour();
         targetOnline = currentOnline;
         document.getElementById('onlineCount').innerHTML = currentOnline.toLocaleString();
         updateOnlineCount();
-        addTopBar();
         initPullToRefresh();
     }
     
