@@ -41,20 +41,15 @@
         .game-img { width: 55px; height: 55px; border-radius: 14px; object-fit: cover; border: 2px solid #f59e0b; }
         .game-name { font-weight: 800; background: linear-gradient(45deg, #ffd966, #f59e0b); -webkit-background-clip: text; background-clip: text; color: transparent; font-size: 18px; }
         
-        /* YouTube Video - Tidak Bisa Klik Channel */
-        .video-container { position: relative; width: 100%; padding-bottom: 56.25%; background: #000; overflow: hidden; border-radius: 12px; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; pointer-events: auto; }
-        /* Overlay mencegah klik ke channel tapi tetap bisa play */
-        .video-overlay { 
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            z-index: 10; 
-            background: transparent; 
-            pointer-events: none;
-        }
+        /* Custom HTML5 Video Player - TANPA LINK KE MANAPUN */
+        .video-container { position: relative; width: 100%; background: #000; border-radius: 12px; overflow: hidden; }
+        .video-container video { width: 100%; height: auto; display: block; cursor: pointer; }
+        .video-controls { display: flex; align-items: center; gap: 12px; padding: 8px 12px; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); }
+        .play-pause-btn { background: none; border: none; color: #fbbf24; font-size: 18px; cursor: pointer; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.1); transition: 0.1s; }
+        .play-pause-btn:active { transform: scale(0.95); }
+        .video-time { font-size: 12px; color: #94a3b8; font-family: monospace; }
+        .video-progress { flex: 1; height: 4px; background: #334155; border-radius: 4px; overflow: hidden; cursor: pointer; }
+        .video-progress-fill { height: 100%; background: #f59e0b; width: 0%; transition: width 0.1s; }
         
         .price-wrapper { padding: 12px 16px; }
         .price-platform-card { background: rgba(0,0,0,0.3); border-radius: 14px; margin-bottom: 12px; overflow: hidden; }
@@ -168,15 +163,26 @@
     const paketLabels = { id: ["14 Hari", "30 Hari", "60 Hari"], en: ["14 Days", "30 Days", "60 Days"] };
     const paymentMethodsList = ["PayPal", "QRIS", "Crypto"];
     
-    // Data game dengan YouTube video (tidak bisa redirect)
+    // Video URLs (menggunakan video sample yang aman, tidak ada link ke channel)
+    // Video ini murni file video, tidak ada judul, logo, atau link apapun
+    const videoUrls = [
+        "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+        "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4",
+        "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+        "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+        "https://storage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+        "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+        "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4"
+    ];
+    
     const games = [
-        { name: "PUBG Mobile", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ1L1oeq0O83iQLxZPgGa0667Ppae27slZsdj_orTTxQ&s=10", desc: { id: "ESP, Aimbot, No Recoil", en: "ESP, Aimbot, No Recoil" }, videoId: "lc4E-XD3F6M" },
-        { name: "Free Fire", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRIanj8jNJDFOzMixdsXW9ES6L3k2h-hvvAHu1eIFtuw&s", desc: { id: "Diamond Hack, Wallhack", en: "Diamond Hack, Wallhack" }, videoId: "reB_BvR4jHc" },
-        { name: "Mobile Legends", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjGrXZQoyfip2gmYpnC8pMPGdQ4JkBiRd9EBbQ3saBuQ&s=10", desc: { id: "Map Hack, Skin Unlocker", en: "Map Hack, Skin Unlocker" }, videoId: "8QZoUzi7hK4" },
-        { name: "Call of Duty Mobile", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTESeKStEAEoqjIE_JGXqk5I-X1xytLcjK1DxG4Hdu91A&s=10", desc: { id: "Radar, Aim Assist", en: "Radar, Aim Assist" }, videoId: "Ir3M1oJ9w70" },
-        { name: "Genshin Impact", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRguULEwY0seVomZv6CStI9KcP9rs1xxOdblgHSWFHn5g&s=10", desc: { id: "God Mode, Damage Multi", en: "God Mode, Damage Multi" }, videoId: "G-LYkuef_xI" },
-        { name: "Valorant", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlTuataF1tUc9MNpLuz82cipmVwJnAKXLQpdRm6CScC4O1jPgxNX6zm2nv&s=10", desc: { id: "TriggerBot, ESP", en: "TriggerBot, ESP" }, videoId: "E4hF3uZZoVo" },
-        { name: "Farlight 84", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPqUbbk0QisICb8Arx6bPeIG9WuZfKfyIEYyfXy0BK7A&s=10", desc: { id: "Aimbot, Fly Hack", en: "Aimbot, Fly Hack" }, videoId: "_FrrxuzuY40" }
+        { name: "PUBG Mobile", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ1L1oeq0O83iQLxZPgGa0667Ppae27slZsdj_orTTxQ&s=10", desc: { id: "ESP, Aimbot, No Recoil", en: "ESP, Aimbot, No Recoil" }, videoUrl: videoUrls[0] },
+        { name: "Free Fire", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRIanj8jNJDFOzMixdsXW9ES6L3k2h-hvvAHu1eIFtuw&s", desc: { id: "Diamond Hack, Wallhack", en: "Diamond Hack, Wallhack" }, videoUrl: videoUrls[1] },
+        { name: "Mobile Legends", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjGrXZQoyfip2gmYpnC8pMPGdQ4JkBiRd9EBbQ3saBuQ&s=10", desc: { id: "Map Hack, Skin Unlocker", en: "Map Hack, Skin Unlocker" }, videoUrl: videoUrls[2] },
+        { name: "Call of Duty Mobile", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTESeKStEAEoqjIE_JGXqk5I-X1xytLcjK1DxG4Hdu91A&s=10", desc: { id: "Radar, Aim Assist", en: "Radar, Aim Assist" }, videoUrl: videoUrls[3] },
+        { name: "Genshin Impact", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRguULEwY0seVomZv6CStI9KcP9rs1xxOdblgHSWFHn5g&s=10", desc: { id: "God Mode, Damage Multi", en: "God Mode, Damage Multi" }, videoUrl: videoUrls[4] },
+        { name: "Valorant", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlTuataF1tUc9MNpLuz82cipmVwJnAKXLQpdRm6CScC4O1jPgxNX6zm2nv&s=10", desc: { id: "TriggerBot, ESP", en: "TriggerBot, ESP" }, videoUrl: videoUrls[5] },
+        { name: "Farlight 84", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPqUbbk0QisICb8Arx6bPeIG9WuZfKfyIEYyfXy0BK7A&s=10", desc: { id: "Aimbot, Fly Hack", en: "Aimbot, Fly Hack" }, videoUrl: videoUrls[6] }
     ];
 
     let currentLang = "id";
@@ -245,10 +251,57 @@
         }
     }
 
-    // YouTube embed dengan parameter yang mencegah redirect ke channel
-    function getYouTubeEmbedUrl(videoId) {
-        // Parameter lengkap untuk mencegah klik ke YouTube
-        return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=0&controls=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1&fs=0&cc_load_policy=0&color=white&hl=id`;
+    // Setup video player dengan kontrol
+    function setupVideoPlayer(videoElement, playBtn, progressBar, timeDisplay) {
+        // Play/Pause
+        playBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (videoElement.paused) {
+                videoElement.play();
+                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            } else {
+                videoElement.pause();
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        });
+        
+        // Klik pada video juga play/pause
+        videoElement.addEventListener('click', () => {
+            if (videoElement.paused) {
+                videoElement.play();
+                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            } else {
+                videoElement.pause();
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        });
+        
+        // Update progress
+        videoElement.addEventListener('timeupdate', () => {
+            const percent = (videoElement.currentTime / videoElement.duration) * 100;
+            progressBar.style.width = percent + '%';
+            const minutes = Math.floor(videoElement.currentTime / 60);
+            const seconds = Math.floor(videoElement.currentTime % 60);
+            timeDisplay.textContent = `${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+        });
+        
+        // Seek
+        const progressContainer = progressBar.parentElement;
+        progressContainer.addEventListener('click', (e) => {
+            const rect = progressContainer.getBoundingClientRect();
+            const pos = (e.clientX - rect.left) / rect.width;
+            videoElement.currentTime = pos * videoElement.duration;
+        });
+        
+        // Update total duration when loaded
+        videoElement.addEventListener('loadedmetadata', () => {
+            const minutes = Math.floor(videoElement.duration / 60);
+            const seconds = Math.floor(videoElement.duration % 60);
+            const totalTime = document.createElement('span');
+            totalTime.className = 'video-time';
+            totalTime.textContent = ` / ${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+            timeDisplay.parentNode.appendChild(totalTime);
+        });
     }
 
     function renderGameList() {
@@ -264,8 +317,17 @@
                         <div><div class="game-name">${game.name}</div><div style="font-size: 11px; color: #94a3b8;">${game.desc[currentLang]}</div></div>
                     </div>
                     <div class="video-container">
-                        <iframe id="video-${index}" data-video-id="${game.videoId}" src="${getYouTubeEmbedUrl(game.videoId)}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                        <div class="video-overlay"></div>
+                        <video id="video-${index}" poster="${game.img}" preload="metadata">
+                            <source src="${game.videoUrl}" type="video/mp4">
+                            Browser Anda tidak mendukung video.
+                        </video>
+                        <div class="video-controls">
+                            <button class="play-pause-btn" id="play-btn-${index}"><i class="fas fa-play"></i></button>
+                            <div class="video-time" id="time-${index}">00:00</div>
+                            <div class="video-progress">
+                                <div class="video-progress-fill" id="progress-${index}"></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="price-wrapper">
                         <div class="price-platform-card">
@@ -289,6 +351,19 @@
                 </div>
             `;
         }).join('');
+        
+        // Setup video players setelah render
+        setTimeout(() => {
+            games.forEach((_, index) => {
+                const video = document.getElementById(`video-${index}`);
+                const playBtn = document.getElementById(`play-btn-${index}`);
+                const progressBar = document.getElementById(`progress-${index}`);
+                const timeDisplay = document.getElementById(`time-${index}`);
+                if (video && playBtn && progressBar && timeDisplay) {
+                    setupVideoPlayer(video, playBtn, progressBar, timeDisplay);
+                }
+            });
+        }, 100);
     }
 
     // MODAL ORDER FUNCTIONS
