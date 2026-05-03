@@ -1,21 +1,8 @@
-
 {
-  "versionCode": 3,
-  "versionName": "1.2.0",
-  "minRequiredVersion": 2,
-  "updateType": "recommended",
-  "changelog": [
-    "✨ Fitur baru: Dark Mode",
-    "🐛 Perbaikan crash saat login",
-    "⚡ Peningkatan kecepatan loading",
-    "🔒 Update library keamanan",
-    "🎨 Desain UI lebih modern"
-  ],
-  "downloadUrl": "https://llcstore92-lab.github.io/IIc_store/LLC STORE.apk",
-  "fileSizeMB": 12.5
+  "version": "1.1.0",
+  "lastUpdate": "2026-04-18",
+  "changelog": "✨ Perbaikan pesan gambar\n🚀 menghilangkan bug pesanan\n🎨 respon baru",
+  "forceUpdate": false,
+  "downloadUrl": "https://llcstore92-lab.github.io/play-store/",
+  "fileSize": "9.32 MB"
 }
-
-
-
-
-#llc store jualan
