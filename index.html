@@ -21,39 +21,71 @@
         .toast-msg { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px); background: #1e293b; padding: 12px 24px; border-radius: 50px; z-index: 9999; transition: 0.3s; border-left: 4px solid #f59e0b; opacity: 0; font-size: 13px; }
         .toast-msg.show { transform: translateX(-50%) translateY(0); opacity: 1; }
         .container { max-width: 650px; margin: 0 auto; padding: 20px 16px 40px; }
+        
         .lang-switch { display: flex; justify-content: flex-end; gap: 10px; margin-bottom: 15px; }
         .lang-btn { background: rgba(51,65,85,0.5); border: none; padding: 8px 18px; border-radius: 50px; color: white; cursor: pointer; font-size: 13px; font-weight: 500; transition: 0.2s; }
         .lang-btn.active { background: linear-gradient(135deg, #f59e0b, #d97706); color: #0f172a; font-weight: bold; }
+        
         .hero { background: rgba(15,25,45,0.65); backdrop-filter: blur(12px); border-radius: 1.5rem; padding: 1rem; text-align: center; margin-bottom: 20px; border: 1px solid rgba(245,158,11,0.3); }
         .badge { background: rgba(51,65,85,0.5); padding: 6px 14px; border-radius: 50px; font-size: 12px; display: inline-block; margin: 4px; border-left: 3px solid #f59e0b; }
+        
         .online-card { background: linear-gradient(135deg, #1e293b, #0f172a); border-radius: 1.5rem; padding: 15px; text-align: center; margin-bottom: 20px; border: 1px solid rgba(245,158,11,0.25); }
         .online-number { font-size: 32px; font-weight: 800; background: linear-gradient(135deg, #fff, #fbbf24); -webkit-background-clip: text; background-clip: text; color: transparent; }
         .payment-section { background: rgba(15,25,45,0.6); border-radius: 1.5rem; padding: 16px; margin: 20px 0; border: 1px solid rgba(245,158,11,0.3); }
         .payment-methods { display: flex; flex-wrap: wrap; gap: 8px; }
         .payment-chip { background: #0f172a; padding: 8px 14px; border-radius: 50px; font-size: 13px; border: 1px solid rgba(245,158,11,0.3); display: inline-flex; align-items: center; gap: 8px; }
+        
         .game-grid { display: flex; flex-direction: column; gap: 30px; margin: 20px 0; }
         .game-card { background: rgba(10,20,35,0.6); backdrop-filter: blur(12px); border-radius: 1.5rem; border: 1px solid rgba(245,158,11,0.25); overflow: hidden; transition: 0.2s; }
         .game-header { display: flex; align-items: center; gap: 14px; padding: 14px; background: rgba(30,41,59,0.9); border-bottom: 1px solid #f59e0b; }
         .game-img { width: 55px; height: 55px; border-radius: 14px; object-fit: cover; border: 2px solid #f59e0b; }
         .game-name { font-weight: 800; background: linear-gradient(45deg, #ffd966, #f59e0b); -webkit-background-clip: text; background-clip: text; color: transparent; font-size: 18px; }
+        
+        /* ========== YouTube Player - TANPA LOGO/CHANNEL/LINK ========== */
         .video-container { position: relative; width: 100%; background: #000; border-radius: 12px; overflow: hidden; }
-        .video-container video { width: 100%; height: auto; display: block; cursor: pointer; }
-        .video-controls { display: flex; align-items: center; gap: 12px; padding: 8px 12px; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); }
+        .youtube-wrapper { position: relative; width: 100%; padding-bottom: 56.25%; background: #000; }
+        .youtube-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        /* Overlap yang menutupi logo, judul, channel, link YouTube */
+        .video-blocker { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            z-index: 20; 
+            background: transparent; 
+            pointer-events: none; /* Biarkan event klik ke kontrol di bawahnya */
+        }
+        /* Custom Controls */
+        .custom-controls { display: flex; align-items: center; gap: 12px; padding: 8px 12px; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); position: relative; z-index: 25; }
         .play-pause-btn { background: none; border: none; color: #fbbf24; font-size: 18px; cursor: pointer; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.1); transition: 0.1s; }
         .play-pause-btn:active { transform: scale(0.95); }
         .video-time { font-size: 12px; color: #94a3b8; font-family: monospace; }
-        .video-progress { flex: 1; height: 4px; background: #334155; border-radius: 4px; overflow: hidden; cursor: pointer; }
+        .video-progress { flex: 1; height: 4px; background: #334155; border-radius: 4px; overflow: hidden; cursor: pointer; position: relative; z-index: 30; }
         .video-progress-fill { height: 100%; background: #f59e0b; width: 0%; transition: width 0.1s; }
+        
+        /* Sembunyikan elemen YouTube yang tidak diinginkan (fallback) */
+        .youtube-wrapper iframe {
+            pointer-events: none; /* Matikan semua klik di iframe YouTube */
+        }
+        /* Kontrol custom tetap bisa diklik karena z-index lebih tinggi */
+        .custom-controls button, .custom-controls .video-progress {
+            pointer-events: auto;
+        }
+        
         .price-wrapper { padding: 12px 16px; }
         .price-platform-card { background: rgba(0,0,0,0.3); border-radius: 14px; margin-bottom: 12px; overflow: hidden; }
         .price-platform-header { padding: 10px 14px; background: rgba(245,158,11,0.15); border-bottom: 1px solid rgba(245,158,11,0.2); }
         .price-platform-header span { font-weight: 700; font-size: 14px; }
+        .price-platform-header i { margin-right: 8px; }
         .price-list { display: flex; justify-content: space-around; padding: 12px 10px; flex-wrap: wrap; gap: 12px; }
         .price-item-card { text-align: center; flex: 1; min-width: 80px; background: rgba(15,25,45,0.5); border-radius: 12px; padding: 8px 6px; }
         .price-days { font-size: 11px; color: #94a3b8; margin-bottom: 4px; }
         .price-amount { font-size: 16px; font-weight: 800; color: #fbbf24; }
+        
         .btn-order { width: calc(100% - 32px); margin: 0 16px 20px; padding: 14px; background: linear-gradient(95deg, #f59e0b, #d97706); border: none; color: white; font-weight: 800; font-size: 16px; border-radius: 50px; cursor: pointer; transition: 0.1s; }
         .btn-order:active { transform: scale(0.96); }
+        
         .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.98); backdrop-filter: blur(40px); z-index: 2000; justify-content: center; align-items: center; }
         .modal-content { background: linear-gradient(135deg, #1e293b, #0f172a); width: 90%; max-width: 460px; border-radius: 1.8rem; padding: 22px; border: 2px solid #f59e0b; }
         .form-group { margin-bottom: 18px; }
@@ -63,6 +95,7 @@
         .btn-copy, .btn-send { width: 100%; padding: 12px; border-radius: 40px; font-weight: 700; margin: 8px 0; border: none; cursor: pointer; transition: 0.1s; }
         .btn-copy { background: #334155; color: white; }
         .btn-send { background: linear-gradient(95deg, #f59e0b, #fbbf24); color: #0f172a; }
+        
         .telegram-btn { display: block; background: #0088cc; text-align: center; padding: 14px; border-radius: 50px; color: white; text-decoration: none; margin: 20px 0 10px; font-weight: 700; cursor: pointer; border: none; width: 100%; font-size: 16px; }
         .collab-section { background: linear-gradient(135deg, #1e293b, #0f172a); border-radius: 1.5rem; padding: 20px; margin: 20px 0; text-align: center; border: 1px solid rgba(245,158,11,0.4); }
         .collab-title { color: #fbbf24; font-size: 18px; margin-bottom: 10px; font-weight: 700; }
@@ -152,19 +185,19 @@
     const paketLabels = { id: ["14 Hari", "30 Hari", "60 Hari"], en: ["14 Days", "30 Days", "60 Days"] };
     const paymentMethodsList = ["PayPal", "QRIS", "Crypto"];
     
-    // DATA GAME (video MP4 dari hosting yang BISA streaming)
-    // ⚠️ GANTI link video PUBG dengan link MP4 yang benar (bisa streaming, bukan download)
+    // DATA GAME (YouTube embed dengan parameter maksimal + CSS blocker)
     const games = [
-        { name: "PUBG Mobile", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ1L1oeq0O83iQLxZPgGa0667Ppae27slZsdj_orTTxQ&s=10", desc: { id: "ESP, Aimbot, No Recoil", en: "ESP, Aimbot, No Recoil" }, videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" },
-        { name: "Free Fire", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRIanj8jNJDFOzMixdsXW9ES6L3k2h-hvvAHu1eIFtuw&s", desc: { id: "Diamond Hack, Wallhack", en: "Diamond Hack, Wallhack" }, videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4" },
-        { name: "Mobile Legends", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjGrXZQoyfip2gmYpnC8pMPGdQ4JkBiRd9EBbQ3saBuQ&s=10", desc: { id: "Map Hack, Skin Unlocker", en: "Map Hack, Skin Unlocker" }, videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" },
-        { name: "Call of Duty Mobile", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTESeKStEAEoqjIE_JGXqk5I-X1xytLcjK1DxG4Hdu91A&s=10", desc: { id: "Radar, Aim Assist", en: "Radar, Aim Assist" }, videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4" },
-        { name: "Genshin Impact", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRguULEwY0seVomZv6CStI9KcP9rs1xxOdblgHSWFHn5g&s=10", desc: { id: "God Mode, Damage Multi", en: "God Mode, Damage Multi" }, videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" },
-        { name: "Valorant", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlTuataF1tUc9MNpLuz82cipmVwJnAKXLQpdRm6CScC4O1jPgxNX6zm2nv&s=10", desc: { id: "TriggerBot, ESP", en: "TriggerBot, ESP" }, videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFunflies.mp4" },
-        { name: "Farlight 84", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPqUbbk0QisICb8Arx6bPeIG9WuZfKfyIEYyfXy0BK7A&s=10", desc: { id: "Aimbot, Fly Hack", en: "Aimbot, Fly Hack" }, videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" }
+        { name: "PUBG Mobile", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ1L1oeq0O83iQLxZPgGa0667Ppae27slZsdj_orTTxQ&s=10", desc: { id: "ESP, Aimbot, No Recoil", en: "ESP, Aimbot, No Recoil" }, videoId: "lc4E-XD3F6M" },
+        { name: "Free Fire", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRIanj8jNJDFOzMixdsXW9ES6L3k2h-hvvAHu1eIFtuw&s", desc: { id: "Diamond Hack, Wallhack", en: "Diamond Hack, Wallhack" }, videoId: "reB_BvR4jHc" },
+        { name: "Mobile Legends", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjGrXZQoyfip2gmYpnC8pMPGdQ4JkBiRd9EBbQ3saBuQ&s=10", desc: { id: "Map Hack, Skin Unlocker", en: "Map Hack, Skin Unlocker" }, videoId: "8QZoUzi7hK4" },
+        { name: "Call of Duty Mobile", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTESeKStEAEoqjIE_JGXqk5I-X1xytLcjK1DxG4Hdu91A&s=10", desc: { id: "Radar, Aim Assist", en: "Radar, Aim Assist" }, videoId: "Ir3M1oJ9w70" },
+        { name: "Genshin Impact", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRguULEwY0seVomZv6CStI9KcP9rs1xxOdblgHSWFHn5g&s=10", desc: { id: "God Mode, Damage Multi", en: "God Mode, Damage Multi" }, videoId: "G-LYkuef_xI" },
+        { name: "Valorant", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlTuataF1tUc9MNpLuz82cipmVwJnAKXLQpdRm6CScC4O1jPgxNX6zm2nv&s=10", desc: { id: "TriggerBot, ESP", en: "TriggerBot, ESP" }, videoId: "E4hF3uZZoVo" },
+        { name: "Farlight 84", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPqUbbk0QisICb8Arx6bPeIG9WuZfKfyIEYyfXy0BK7A&s=10", desc: { id: "Aimbot, Fly Hack", en: "Aimbot, Fly Hack" }, videoId: "_FrrxuzuY40" }
     ];
 
     let currentLang = "id";
+    let playersState = {}; // Untuk menyimpan status play/pause
 
     const texts = {
         id: {
@@ -230,50 +263,116 @@
         }
     }
 
-    function setupVideoPlayer(videoElement, playBtn, progressBar, timeDisplay) {
+    // Fungsi untuk membuat YouTube iframe dengan parameter maksimal
+    function getYouTubeEmbedUrl(videoId) {
+        return `https://www.youtube-nocookie.com/embed/${videoId}?enablejsapi=1&autoplay=0&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1&fs=0&cc_load_policy=0&playsinline=1&origin=${encodeURIComponent(window.location.origin)}`;
+    }
+
+    // Setup kontrol custom untuk YouTube
+    function setupCustomYouTubeControls(iframe, playBtn, progressBar, timeDisplay, index) {
+        let player = null;
+        let playerReady = false;
+        let progressInterval = null;
+        
+        // Fungsi untuk update progress bar
+        function updateProgress() {
+            if (player && playerReady && typeof player.getCurrentTime === 'function') {
+                const current = player.getCurrentTime();
+                const duration = player.getDuration();
+                if (duration > 0) {
+                    const percent = (current / duration) * 100;
+                    progressBar.style.width = percent + '%';
+                    const minutes = Math.floor(current / 60);
+                    const seconds = Math.floor(current % 60);
+                    timeDisplay.textContent = `${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+                }
+            }
+        }
+        
+        // Load YouTube API
+        if (typeof YT === 'undefined') {
+            const tag = document.createElement('script');
+            tag.src = 'https://www.youtube.com/iframe_api';
+            const firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            window.onYouTubeIframeAPIReady = () => {
+                player = new YT.Player(iframe, {
+                    events: {
+                        onReady: (event) => {
+                            playerReady = true;
+                            const duration = event.target.getDuration();
+                            const minutes = Math.floor(duration / 60);
+                            const seconds = Math.floor(duration % 60);
+                            const totalSpan = document.createElement('span');
+                            totalSpan.className = 'video-time';
+                            totalSpan.textContent = ` / ${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+                            timeDisplay.parentNode.appendChild(totalSpan);
+                        },
+                        onStateChange: (event) => {
+                            if (event.data === YT.PlayerState.PLAYING) {
+                                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                                if (progressInterval) clearInterval(progressInterval);
+                                progressInterval = setInterval(updateProgress, 500);
+                            } else {
+                                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                                if (progressInterval) clearInterval(progressInterval);
+                                updateProgress();
+                            }
+                        }
+                    }
+                });
+            };
+        } else {
+            player = new YT.Player(iframe, {
+                events: {
+                    onReady: (event) => {
+                        playerReady = true;
+                        const duration = event.target.getDuration();
+                        const minutes = Math.floor(duration / 60);
+                        const seconds = Math.floor(duration % 60);
+                        const totalSpan = document.createElement('span');
+                        totalSpan.className = 'video-time';
+                        totalSpan.textContent = ` / ${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+                        timeDisplay.parentNode.appendChild(totalSpan);
+                    },
+                    onStateChange: (event) => {
+                        if (event.data === YT.PlayerState.PLAYING) {
+                            playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                            if (progressInterval) clearInterval(progressInterval);
+                            progressInterval = setInterval(updateProgress, 500);
+                        } else {
+                            playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                            if (progressInterval) clearInterval(progressInterval);
+                            updateProgress();
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Play/Pause button
         playBtn.addEventListener('click', () => {
-            if (videoElement.paused) {
-                videoElement.play();
-                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-            } else {
-                videoElement.pause();
-                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+            if (player && playerReady) {
+                if (player.getPlayerState() === YT.PlayerState.PLAYING) {
+                    player.pauseVideo();
+                } else {
+                    player.playVideo();
+                }
             }
         });
         
-        videoElement.addEventListener('click', () => {
-            if (videoElement.paused) {
-                videoElement.play();
-                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-            } else {
-                videoElement.pause();
-                playBtn.innerHTML = '<i class="fas fa-play"></i>';
-            }
-        });
-        
-        videoElement.addEventListener('timeupdate', () => {
-            const percent = (videoElement.currentTime / videoElement.duration) * 100;
-            progressBar.style.width = percent + '%';
-            const minutes = Math.floor(videoElement.currentTime / 60);
-            const seconds = Math.floor(videoElement.currentTime % 60);
-            timeDisplay.textContent = `${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
-        });
-        
+        // Seek
         const progressContainer = progressBar.parentElement;
         progressContainer.addEventListener('click', (e) => {
-            const rect = progressContainer.getBoundingClientRect();
-            const pos = (e.clientX - rect.left) / rect.width;
-            videoElement.currentTime = pos * videoElement.duration;
+            if (player && playerReady) {
+                const rect = progressContainer.getBoundingClientRect();
+                const pos = (e.clientX - rect.left) / rect.width;
+                const duration = player.getDuration();
+                player.seekTo(pos * duration, true);
+            }
         });
         
-        videoElement.addEventListener('loadedmetadata', () => {
-            const minutes = Math.floor(videoElement.duration / 60);
-            const seconds = Math.floor(videoElement.duration % 60);
-            const totalTime = document.createElement('span');
-            totalTime.className = 'video-time';
-            totalTime.textContent = ` / ${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
-            timeDisplay.parentNode.appendChild(totalTime);
-        });
+        playersState[index] = { player: () => player, ready: () => playerReady };
     }
 
     function renderGameList() {
@@ -289,11 +388,12 @@
                         <div><div class="game-name">${game.name}</div><div style="font-size: 11px; color: #94a3b8;">${game.desc[currentLang]}</div></div>
                     </div>
                     <div class="video-container">
-                        <video id="video-${index}" poster="${game.img}" preload="metadata">
-                            <source src="${game.videoUrl}" type="video/mp4">
-                            Browser tidak mendukung video.
-                        </video>
-                        <div class="video-controls">
+                        <div class="youtube-wrapper" id="youtube-wrapper-${index}">
+                            <iframe id="youtube-${index}" data-video-id="${game.videoId}" src="${getYouTubeEmbedUrl(game.videoId)}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            <!-- Blocker untuk mencegah klik ke channel/link YouTube -->
+                            <div class="video-blocker"></div>
+                        </div>
+                        <div class="custom-controls">
                             <button class="play-pause-btn" id="play-btn-${index}"><i class="fas fa-play"></i></button>
                             <div class="video-time" id="time-${index}">00:00</div>
                             <div class="video-progress">
@@ -324,17 +424,18 @@
             `;
         }).join('');
         
+        // Setup YouTube controls setelah render
         setTimeout(() => {
             games.forEach((_, index) => {
-                const video = document.getElementById(`video-${index}`);
+                const iframe = document.getElementById(`youtube-${index}`);
                 const playBtn = document.getElementById(`play-btn-${index}`);
                 const progressBar = document.getElementById(`progress-${index}`);
                 const timeDisplay = document.getElementById(`time-${index}`);
-                if (video && playBtn && progressBar && timeDisplay) {
-                    setupVideoPlayer(video, playBtn, progressBar, timeDisplay);
+                if (iframe && playBtn && progressBar && timeDisplay) {
+                    setupCustomYouTubeControls(iframe, playBtn, progressBar, timeDisplay, index);
                 }
             });
-        }, 100);
+        }, 500);
     }
 
     let currentGameName = "";
